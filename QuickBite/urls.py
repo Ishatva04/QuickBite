@@ -24,4 +24,5 @@ from django.contrib.auth.urls import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("menu/", include("menu.urls")),
+    path("")
 ]

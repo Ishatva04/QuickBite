@@ -5,11 +5,10 @@ from .models import Category
 
 def menu(request):
     categories = Category.objects.all()
+    return render(request,"menu.html",{"categories": categories})
 
-    return render(
-        request,
-        "menu.html",
-        {
-            "categories": categories
-        }
-    )
+
+def category_detail(request, category_id):
+    category = Category.objects.get(id=category_id)
+    foods = category.food_set.all()
+    return render(request,"category_detail.html",{"category": category, "foods": foods})
