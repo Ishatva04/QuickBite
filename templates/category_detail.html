@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ category.name }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Food</th>
+                <th>Price</th>
+                <th>Available</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for food in foods %}
+                <tr>
+                    <td>
+                        <a href="{% url 'food_detail' food.id %}">
+                            {{ food.name }}
+                        </a>
+                    </td>
+
+                    <td>₹{{ food.price }}</td>
+
+                    <td>
+                        {% if food.is_available %}
+                            Available
+                        {% else %}
+                            Not Available
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

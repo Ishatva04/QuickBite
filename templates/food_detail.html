@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if food.image %}
+        <img src="{{ food.image.url }}" alt="{{ food.name }}">
+    {% endif %}
+
+    <h1>{{ food.name }}</h1>
+
+    <p>Price: ₹{{ food.price }}</p>
+
+    {% if food.description %}
+        <p>Description: {{ food.description }}</p>
+    {% endif %}
+
+    {% if food.ingredients %}
+        <p>Ingredients: {{ food.ingredients }}</p>
+    {% endif %}
+
+    {% if food.spicy_level %}
+        <p>Spicy Level: {{ food.spicy_level }}</p>
+    {% endif %}
+
+    <p>
+        {% if food.is_available %}
+            Available
+        {% else %}
+            Not Available
+        {% endif %}
+    </p>
+
+{% endblock %}

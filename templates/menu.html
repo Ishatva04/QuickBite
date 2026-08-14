@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QuickBite Menu</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
     <h1>QuickBite Menu</h1>
+
     {% for category in categories %}
-    <h2>{{ category.name }}</h2>
+        <h2>
+            <a href="{% url 'category_detail' category.id %}">
+                {{ category.name }}
+            </a>
+        </h2>
     {% endfor %}
 
-</body>
-</html>
+{% endblock %}
