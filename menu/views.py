@@ -16,3 +16,6 @@ def category_detail(request, category_id):
 def food_detail(request, food_id):
     food = Food.objects.get(id=food_id)
     return render(request,"food_detail.html", {"food": food})
+
+def home(request):
+    return render(request,"home.html")
