@@ -26,6 +26,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path('admin/', admin.site.urls),
     path("menu/", include("menu.urls")),
+    path('accounts/', include('accounts.urls')),
 ]
 
 urlpatterns += static(
