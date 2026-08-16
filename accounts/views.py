@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login
-
+from django.contrib.auth import login,logout
+from django.contrib.auth import authenticate
 
 def signup(request):
     error = None
@@ -29,4 +29,24 @@ def signup(request):
 )
 
 def login_view(request):
-    return render(request,'login.html')
+    error = None
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(
+            username=username,
+            password=password
+        )
+        if user is None:
+            error = "Invalid username or password"
+        else:
+            login(request, user)
+            return redirect("home")
+
+    return render(request,"login.html",{"error": error})
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")

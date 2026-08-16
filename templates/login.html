@@ -3,6 +3,9 @@
 {% block content %}
 
 <h1>Login</h1>
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
 
 <form method="POST">
 

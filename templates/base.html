@@ -14,9 +14,21 @@
         </div>
 
         <div>
-            <a href="#">Login</a>
-            <a href="#">Sign In</a>
+
+            {% if user.is_authenticated %}
+
+                <span>Welcome, {{ user.username }}</span>
+                <a href="#">Logout</a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign In</a>
+
+            {% endif %}
+
             <a href="#">About</a>
+
         </div>
     </nav>
 
