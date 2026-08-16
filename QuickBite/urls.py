@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("menu/", include("menu.urls")),
     path('accounts/', include('accounts.urls')),
+    path("about/",views.about, name= "about"),
 ]
 
 urlpatterns += static(

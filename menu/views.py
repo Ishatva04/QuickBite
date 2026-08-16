@@ -20,4 +20,6 @@ def food_detail(request, food_id):
 def home(request):
     return render(request,"home.html")
 
+def about(request):
+    return render(request,"about.html")
 
