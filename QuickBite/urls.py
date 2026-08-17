@@ -28,6 +28,7 @@ urlpatterns = [
     path("menu/", include("menu.urls")),
     path('accounts/', include('accounts.urls')),
     path("about/",views.about, name= "about"),
+    path("management/", include("management.urls")),
 ]
 
 urlpatterns += static(

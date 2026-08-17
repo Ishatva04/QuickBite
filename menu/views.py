@@ -5,6 +5,7 @@ from .models import Category,Food
 
 def menu(request):
     categories = Category.objects.all()
+    table_id = request.session.get("table_id")
     return render(request,"menu.html",{"categories": categories})
 
 
