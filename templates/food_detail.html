@@ -29,5 +29,8 @@
             Not Available
         {% endif %}
     </p>
+    <a href="{% url 'add_to_cart' food.id %}">
+        Add to Cart
+    </a>
 
 {% endblock %}
