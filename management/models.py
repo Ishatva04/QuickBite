@@ -11,11 +11,20 @@ class RestaurantTable(models.Model):
     def __str__(self):
         return str(self.table_number)
 
+ORDER_STATUS = [
+    ("pending", "Pending"),
+    ("confirmed", "Confirmed"),
+    ("preparing", "Preparing"),
+    ("ready", "Ready"),
+    ("completed", "Completed"),
+    ("cancelled", "Cancelled"),
+]
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=20, default="Pending")
+    status = models.CharField(max_length=20, choices=ORDER_STATUS, default="Pending")
 
     def __str__(self):
             return str(self.user)
@@ -29,3 +38,4 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return str(self.order)
+
