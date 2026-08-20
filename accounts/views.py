@@ -30,10 +30,12 @@ def signup(request):
 
 def login_view(request):
     error = None
+    next_url = request.GET.get("next")
 
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
+        next_url = request.POST.get("next")
 
         user = authenticate(
             username=username,
@@ -43,9 +45,13 @@ def login_view(request):
             error = "Invalid username or password"
         else:
             login(request, user)
+
+            if next_url:
+                return redirect(next_url)
+            
             return redirect("home")
 
-    return render(request,"login.html",{"error": error})
+    return render(request,"login.html",{"error": error, "next": next_url,})
 
 def logout_view(request):
     logout(request)

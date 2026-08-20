@@ -17,6 +17,8 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=20, default="Pending")
 
+    def __str__(self):
+            return str(self.user)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
@@ -24,3 +26,6 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return str(self.order)
