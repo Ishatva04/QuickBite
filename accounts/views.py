@@ -5,14 +5,18 @@ from django.contrib.auth import authenticate
 
 def signup(request):
     error = None
+    next_url = request.GET.get("next")
 
     if request.method == "POST":
         username = request.POST.get("username")
+        next_url = request.POST.get("next")
         email = request.POST.get("email")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
+        if not username:
+            error = "Username is required"
 
-        if password != confirm_password:
+        elif password != confirm_password:
             error = "Passwords do not match"
 
         elif User.objects.filter(username=username).exists():
@@ -24,8 +28,12 @@ def signup(request):
                 email=email,
                 password=password
             )
+            if next_url:
+                return redirect(f"/accounts/login/?next={next_url}")
 
-    return render(request,"signup.html",{"error": error}
+            return redirect("login")
+
+    return render(request,"signup.html",{"error": error,"next": next_url}
 )
 
 def login_view(request):

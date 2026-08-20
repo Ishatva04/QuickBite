@@ -11,6 +11,10 @@
 
     {% csrf_token %}
 
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+    {% endif %}
+
     <label>Username</label>
     <input type="text" name="username">
 
@@ -24,6 +28,10 @@
     <input type="password" name="confirm_password">
 
     <button type="submit">Sign Up</button>
+    <p>
+        Already have a account?
+        <a href="{% url 'login' %}?next={{ next }}">login</a>
+    </p>
 
 </form>
 
