@@ -4,4 +4,62 @@
 
 <h1>Order Placed Successfully!</h1>
 
+<h2>Order #{{ order.id }}</h2>
+
+<p>Status: {{ order.status|title }}</p>
+
+<h3>Order Status</h3>
+
+{% for status in statuses %}
+
+    {% if forloop.counter0 < current_index %}
+        <p>✓ {{ status|title }}</p>
+
+    {% elif forloop.counter0 == current_index %}
+        <p>● {{ status|title }}</p>
+        
+        {% if order.status == "preparing" %}
+
+            <p>
+                Estimated preparation time:
+                {{ order.estimated_preparation_time }} minutes
+            </p>
+
+            <p>
+                Preparation started at:
+                {{ order.preparing_started_at }}
+            </p>
+            <p>
+                Estimated ready time:
+                {{ expected_ready_time|date:"g:i A" }}
+            </p>
+
+                {% if is_late %}
+            <p>
+                Your order is taking a little longer than expected.
+            </p>
+            {% else %}
+             <p>
+                Your order is being prepared.
+            </p>
+            {% endif %}
+            
+        {% endif %}
+
+        {% if order.status == "ready" %}
+            <p>Your order is ready!</p>
+        {% endif %}
+
+        {% if order.status == "completed" %}
+            <p>Order completed. Thank you for ordering with QuickBite!</p>
+        {% endif %}
+
+
+    {% else %}
+        <p>○ {{ status|title }}</p>
+
+    {% endif %}
+
+{% endfor %}
+
 {% endblock %}
