@@ -15,10 +15,115 @@
 
 {% endfor %}
 <h2>Total: ₹{{ total }}</h2>
-<form method="POST">
+<form id="payment-form" method="POST">
     {% csrf_token %}
 
-    <button type="submit">Place Order</button>
+    <button type="submit">Pay ₹{{ total }}</button>
 </form>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
 
+    document.getElementById("payment-form").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        fetch("", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data);
+
+            var options = {
+                "key": data.razorpay_key_id,
+                "amount": data.razorpay_amount,
+                "currency": "INR",
+                "name": "QuickBite",
+                "description": "Restaurant Order",
+                "order_id": data.razorpay_order_id,
+
+                "handler": function(response) {
+
+    fetch("{% url 'payment_verify' %}", {
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": document.querySelector(
+                "[name=csrfmiddlewaretoken]"
+            ).value,
+
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+
+        body: new URLSearchParams({
+            "razorpay_payment_id": response.razorpay_payment_id,
+            "razorpay_order_id": response.razorpay_order_id,
+            "razorpay_signature": response.razorpay_signature,
+        })
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        console.log(data);
+
+        if (data.success) {
+
+            window.location.href =
+                "/management/order/" + data.order_id + "/";
+
+        } else {
+
+            alert("Payment verification failed.");
+
+        }
+
+    });
+
+}
+            };
+
+            var razorpay = new Razorpay(options);
+            razorpay.on("payment.failed", function(response) {
+
+    fetch("{% url 'payment_failed' %}", {
+        method: "POST",
+
+        headers: {
+            "X-CSRFToken": document.querySelector(
+                "[name=csrfmiddlewaretoken]"
+            ).value,
+
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+
+        body: new URLSearchParams({
+            "razorpay_order_id": data.razorpay_order_id
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+
+        console.log(result);
+
+        if (result.success) {
+            alert("Payment failed. Your order has been cancelled.");
+        }
+
+    });
+
+});
+
+            razorpay.open();
+
+        });
+
+    });
+
+</script>
 {% endblock %}
