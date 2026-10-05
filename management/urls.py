@@ -8,4 +8,6 @@ urlpatterns = [
     path("payment/failed/",views.payment_failed,name="payment_failed"),
     path("order/<int:order_id>/", views.order_confirmation, name="order_confirmation"),
     path("orders/", views.my_orders, name="my_orders"),
+    path("invoice/<int:order_id>/", views.invoice, name= "invoice"),
+    path("invoice/<int:order_id>/pdf/", views.invoice_pdf,name = "invoice_pdf"),
 ]

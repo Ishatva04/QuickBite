@@ -1,15 +1,77 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <h1>QuickBite Menu</h1>
+<section class="menu-page">
 
-    {% for category in categories %}
-        <h2>
-            <a href="{% url 'category_detail' category.id %}">
-                {{ category.name }}
-            </a>
-        </h2>
-    {% endfor %}
+    <!-- =========================
+         MENU INTRO
+    ========================== -->
+
+    <div class="menu-hero">
+
+        <p class="menu-label">
+            EXPLORE QUICKBITE
+        </p>
+
+        <h1>
+            OUR
+            <span>MENU</span>
+        </h1>
+
+        <p class="menu-description">
+            Freshly prepared dishes, made with care and served
+            inside our restaurant.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <div class="category-section">
+
+        <div class="category-grid">
+
+            {% for category in categories %}
+
+                <a
+                    href="{% url 'category_detail' category.id %}"
+                    class="category-card"
+                >
+
+                    <div class="category-icon">
+                        🍽️
+                    </div>
+
+                    <div class="category-content">
+
+                        <h2>
+                            {{ category.name }}
+                        </h2>
+
+                        <span class="category-link">
+                            Explore
+                            <span>→</span>
+                        </span>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

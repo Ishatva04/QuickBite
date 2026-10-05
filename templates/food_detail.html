@@ -1,36 +1,187 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/food_detail.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    {% if food.image %}
-        <img src="{{ food.image.url }}" alt="{{ food.name }}">
-    {% endif %}
+<section class="food-detail-page">
 
-    <h1>{{ food.name }}</h1>
+    <div class="food-detail-card">
 
-    <p>Price: ₹{{ food.price }}</p>
+        <!-- =========================
+             FOOD IMAGE
+        ========================== -->
 
-    {% if food.description %}
-        <p>Description: {{ food.description }}</p>
-    {% endif %}
+        <div class="food-detail-image">
 
-    {% if food.ingredients %}
-        <p>Ingredients: {{ food.ingredients }}</p>
-    {% endif %}
+            {% if food.image %}
 
-    {% if food.spicy_level %}
-        <p>Spicy Level: {{ food.spicy_level }}</p>
-    {% endif %}
+                <img
+                    src="{{ food.image.url }}"
+                    alt="{{ food.name }}"
+                >
 
-    <p>
-        {% if food.is_available %}
-            Available
-        {% else %}
-            Not Available
-        {% endif %}
-    </p>
-    <a href="{% url 'add_to_cart' food.id %}">
-        Add to Cart
-    </a>
+            {% else %}
+
+                <div class="food-image-placeholder">
+                    🍽️
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =========================
+             FOOD INFORMATION
+        ========================== -->
+
+        <div class="food-detail-content">
+
+            <p class="food-detail-label">
+                QUICKBITE SPECIAL
+            </p>
+
+
+            <h1>
+                {{ food.name }}
+            </h1>
+
+
+            {% if food.variants.exists %}
+
+    <div class="food-variants">
+
+        <h2>
+            Choose Size
+        </h2>
+
+        {% for variant in food.variants.all %}
+
+            {% if variant.is_available %}
+
+                <div class="food-variant">
+
+                    <span>
+                        {{ variant.name }}
+                    </span>
+
+                    <span>
+                        ₹{{ variant.price }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+            </div>
+
+            {% else %}
+
+                <p class="food-detail-price">
+                 ₹{{ food.price }}
+                </p>
+
+            {% endif %}
+
+
+            <!-- Availability -->
+
+            <div class="food-detail-availability">
+
+                {% if food.is_available %}
+
+                    <span class="status available">
+                        Available
+                    </span>
+
+                {% else %}
+
+                    <span class="status unavailable">
+                        Not Available
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Description -->
+
+            {% if food.description %}
+
+                <div class="food-info-block">
+
+                    <h2>
+                        Description
+                    </h2>
+
+                    <p>
+                        {{ food.description }}
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Ingredients -->
+
+            {% if food.ingredients %}
+
+                <div class="food-info-block">
+
+                    <h2>
+                        Ingredients
+                    </h2>
+
+                    <p>
+                        {{ food.ingredients }}
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Spicy Level -->
+
+            {% if food.spicy_level %}
+
+                <div class="food-info-block">
+
+                    <h2>
+                        Spicy Level
+                    </h2>
+
+                    <p>
+                        {{ food.spicy_level }}
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Add To Cart -->
+
+            <a
+                href="{% url 'add_to_cart' food.id %}"
+                class="food-add-cart"
+            >
+                Add to Cart
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

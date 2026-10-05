@@ -1,26 +1,165 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Checkout</h1>
-{% for item in foods %}
+<section class="checkout-page">
 
-    <h3>{{ item.food.name }}</h3>
+    <!-- =========================
+         CHECKOUT HEADER
+    ========================== -->
 
-    <p>Price: ₹{{ item.food.price }}</p>
+    <div class="checkout-header">
 
-    <p>Quantity: {{ item.quantity }}</p>
+        <p class="checkout-label">
+            QUICKBITE
+        </p>
 
-    <p>Subtotal: ₹{{ item.subtotal }}</p>
+        <h1>
+            CHECKOUT
+        </h1>
 
-{% endfor %}
-<h2>Total: ₹{{ total }}</h2>
-<form id="payment-form" method="POST">
-    {% csrf_token %}
+        <p class="checkout-description">
+            Review your order and complete your payment.
+        </p>
 
-    <button type="submit">Pay ₹{{ total }}</button>
-</form>
+    </div>
+
+
+    <!-- =========================
+         CHECKOUT LAYOUT
+    ========================== -->
+
+    <div class="checkout-layout">
+
+
+        <!-- =========================
+             ORDER ITEMS
+        ========================== -->
+
+        <div class="checkout-order">
+
+            <div class="checkout-order-header">
+
+                <p>
+                    YOUR ORDER
+                </p>
+
+                <span>
+                    {{ foods|length }} items
+                </span>
+
+            </div>
+
+
+            <div class="checkout-items">
+
+                {% for item in foods %}
+
+                    <div class="checkout-item">
+
+                        <div class="checkout-food-icon">
+                            🍽️
+                        </div>
+
+
+                        <div class="checkout-food-info">
+
+                            <h2>
+                                {{ item.food.name }}
+                            </h2>
+
+                            <p>
+                                ₹{{ item.food.price }}
+                                ×
+                                {{ item.quantity }}
+                            </p>
+
+                        </div>
+
+
+                        <strong class="checkout-subtotal">
+                            ₹{{ item.subtotal }}
+                        </strong>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PAYMENT SUMMARY
+        ========================== -->
+
+        <div class="checkout-summary">
+
+            <p class="summary-label">
+                PAYMENT
+            </p>
+
+            <h2>
+                Order Total
+            </h2>
+
+
+            <div class="checkout-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong>
+                    ₹{{ total }}
+                </strong>
+
+            </div>
+
+
+            <p class="payment-note">
+                Secure payment powered by Razorpay.
+            </p>
+
+
+            <!-- =========================
+                 PAYMENT FORM
+            ========================== -->
+
+            <form id="payment-form" method="POST">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="pay-button"
+                >
+                    Pay ₹{{ total }}
+
+                    <span>
+                        →
+                    </span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Razorpay -->
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
 
     document.getElementById("payment-form").addEventListener("submit", function(event) {
@@ -29,95 +168,142 @@
 
         fetch("", {
             method: "POST",
+
             headers: {
-                "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                "X-CSRFToken": document.querySelector(
+                    "[name=csrfmiddlewaretoken]"
+                ).value,
             }
         })
+
         .then(response => response.json())
+
         .then(data => {
 
             console.log(data);
 
             var options = {
+
                 "key": data.razorpay_key_id,
+
                 "amount": data.razorpay_amount,
+
                 "currency": "INR",
+
                 "name": "QuickBite",
+
                 "description": "Restaurant Order",
+
                 "order_id": data.razorpay_order_id,
+
 
                 "handler": function(response) {
 
-    fetch("{% url 'payment_verify' %}", {
-        method: "POST",
+                    fetch("{% url 'payment_verify' %}", {
 
-        headers: {
-            "X-CSRFToken": document.querySelector(
-                "[name=csrfmiddlewaretoken]"
-            ).value,
+                        method: "POST",
 
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
+                        headers: {
 
-        body: new URLSearchParams({
-            "razorpay_payment_id": response.razorpay_payment_id,
-            "razorpay_order_id": response.razorpay_order_id,
-            "razorpay_signature": response.razorpay_signature,
-        })
-    })
+                            "X-CSRFToken": document.querySelector(
+                                "[name=csrfmiddlewaretoken]"
+                            ).value,
 
-    .then(response => response.json())
+                            "Content-Type":
+                                "application/x-www-form-urlencoded",
 
-    .then(data => {
+                        },
 
-        console.log(data);
+                        body: new URLSearchParams({
 
-        if (data.success) {
+                            "razorpay_payment_id":
+                                response.razorpay_payment_id,
 
-            window.location.href =
-                "/management/order/" + data.order_id + "/";
+                            "razorpay_order_id":
+                                response.razorpay_order_id,
 
-        } else {
+                            "razorpay_signature":
+                                response.razorpay_signature,
 
-            alert("Payment verification failed.");
+                        })
 
-        }
+                    })
 
-    });
+                    .then(response => response.json())
 
-}
+                    .then(data => {
+
+                        console.log(data);
+
+                        if (data.success) {
+
+                            window.location.href =
+                                "/management/order/"
+                                + data.order_id
+                                + "/";
+
+                        } else {
+
+                            alert(
+                                "Payment verification failed."
+                            );
+
+                        }
+
+                    });
+
+                }
+
             };
 
+
             var razorpay = new Razorpay(options);
+
+
             razorpay.on("payment.failed", function(response) {
 
-    fetch("{% url 'payment_failed' %}", {
-        method: "POST",
+                fetch("{% url 'payment_failed' %}", {
 
-        headers: {
-            "X-CSRFToken": document.querySelector(
-                "[name=csrfmiddlewaretoken]"
-            ).value,
+                    method: "POST",
 
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
+                    headers: {
 
-        body: new URLSearchParams({
-            "razorpay_order_id": data.razorpay_order_id
-        })
-    })
-    .then(response => response.json())
-    .then(result => {
+                        "X-CSRFToken": document.querySelector(
+                            "[name=csrfmiddlewaretoken]"
+                        ).value,
 
-        console.log(result);
+                        "Content-Type":
+                            "application/x-www-form-urlencoded",
 
-        if (result.success) {
-            alert("Payment failed. Your order has been cancelled.");
-        }
+                    },
 
-    });
+                    body: new URLSearchParams({
 
-});
+                        "razorpay_order_id":
+                            data.razorpay_order_id
+
+                    })
+
+                })
+
+                .then(response => response.json())
+
+                .then(result => {
+
+                    console.log(result);
+
+                    if (result.success) {
+
+                        alert(
+                            "Payment failed. Your order has been cancelled."
+                        );
+
+                    }
+
+                });
+
+            });
+
 
             razorpay.open();
 
@@ -126,4 +312,5 @@
     });
 
 </script>
+
 {% endblock %}

@@ -1,43 +1,79 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>QuickBite</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block extra_css %}
+    {% endblock %}
 </head>
 
 <body>
 
     <nav>
-        <div>
-            <h2>QuickBite</h2>
-        </div>
 
-        <div>
+        <a href="{% url 'home' %}" class="brand">
 
-            {% if user.is_authenticated %}
+    <span class="qb-food-icon">
 
-                <span>Welcome, {{ user.username }}</span>
-                <a href="{% url 'logout' %}">Logout</a>
+        <span class="qb-plate"></span>
+        <span class="qb-food-center"></span>
 
-            {% else %}
+        <span class="qb-fork"></span>
 
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
+        <span class="qb-steam qb-steam-one"></span>
+        <span class="qb-steam qb-steam-two"></span>
 
-            {% endif %}
+    </span>
 
-            <a href="{% url 'about'%}">About</a>
+    <span class="brand-name">
+        QuickBite
+    </span>
 
-        </div>
+</a>
+
+
+        <div class="nav-links">
+
+    {% if user.is_authenticated %}
+
+        <span class="welcome-text">
+            Welcome, {{ user.username }}
+        </span>
+
+        <a href="{% url 'logout' %}" class="nav-item nav-food-item">
+            <span class="nav-food-icon nav-fork"></span>
+            <span>Logout</span>
+        </a>
+
+    {% else %}
+
+        <a href="{% url 'login' %}" class="nav-item nav-food-item">
+            <span class="nav-food-icon nav-spoon"></span>
+            <span>Login</span>
+        </a>
+
+        <a href="{% url 'signup' %}" class="nav-item nav-food-item">
+            <span class="nav-food-icon nav-plate"></span>
+            <span>Sign Up</span>
+        </a>
+
+    {% endif %}
+
+    <a href="{% url 'about' %}" class="nav-item nav-food-item">
+        <span class="nav-food-icon nav-star"></span>
+        <span>About</span>
+    </a>
+
+</div>
     </nav>
+
 
     {% block content %}
     {% endblock %}
 
 </body>
 </html>
-
-
-
-        

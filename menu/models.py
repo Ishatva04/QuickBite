@@ -60,3 +60,27 @@ class Food(models.Model):
             return self.name
 
 
+class FoodVariant(models.Model):
+
+    food = models.ForeignKey(
+        Food,
+        on_delete=models.CASCADE,
+        related_name="variants"
+    )
+
+    name = models.CharField(
+        max_length=50
+    )
+
+    price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2
+        
+    )
+
+    is_available = models.BooleanField(
+        default=True
+    )
+
+    def __str__(self):
+        return f"{self.food.name} - {self.name}"

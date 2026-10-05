@@ -1,0 +1,1054 @@
+/* =========================================================
+   QUICKBITE LOGIN
+   Restaurant Experience
+========================================================= */
+
+.login-page {
+    min-height: calc(100vh - 90px);
+    display: grid;
+    grid-template-columns: 48% 52%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.login-content {
+    padding: 85px 7% 70px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    animation: loginContentIn 1s ease forwards;
+}
+
+
+.login-label {
+    color: #f15f32;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+
+    animation: fadeUp 0.8s ease forwards;
+}
+
+
+.login-content h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(58px, 5.2vw, 82px);
+    line-height: 0.88;
+    letter-spacing: -4px;
+    color: #5b2119;
+    margin-bottom: 28px;
+
+    animation: titleIn 1s ease forwards;
+}
+
+
+.login-content h1 span {
+    color: #f15f32;
+}
+
+
+.login-description {
+    max-width: 430px;
+    color: #70453d;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+
+    animation: fadeUp 1s ease 0.2s both;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.login-error {
+    background: #ffe0d6;
+    color: #a83820;
+    border-left: 4px solid #f15f32;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    max-width: 520px;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-form {
+    width: min(520px, 100%);
+
+    animation: fadeUp 1s ease 0.3s both;
+}
+
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+
+.input-group label {
+    display: block;
+    color: #572018;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+
+.input-wrapper {
+    height: 55px;
+    display: flex;
+    align-items: center;
+
+    background: #fffaf0;
+    border: 1px solid #e7d4b6;
+    border-radius: 14px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.input-wrapper:focus-within {
+    border-color: #f15f32;
+
+    box-shadow:
+        0 8px 25px rgba(91, 33, 25, 0.08);
+
+    transform: translateY(-2px);
+}
+
+
+.input-icon {
+    width: 55px;
+    text-align: center;
+    font-size: 17px;
+}
+
+
+.input-wrapper input {
+    flex: 1;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    color: #572018;
+    font-size: 14px;
+    padding-right: 15px;
+}
+
+
+.input-wrapper input::placeholder {
+    color: #b79588;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+    width: 100%;
+    height: 56px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #f15f32;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.login-button:hover {
+    background: #e85126;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(241, 95, 50, 0.28);
+}
+
+
+.button-arrow {
+    font-size: 20px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.login-button:hover .button-arrow {
+    transform: translateX(7px);
+}
+
+
+/* =========================================================
+   SIGN UP
+========================================================= */
+
+.signup-text {
+    text-align: center;
+    margin-top: 22px;
+
+    color: #8a675d;
+    font-size: 13px;
+}
+
+
+.signup-text a {
+    color: #f15f32;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+
+.signup-text a span {
+    display: inline-block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.signup-text a:hover span {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   RIGHT FOOD AREA
+========================================================= */
+
+.login-food {
+    position: relative;
+    min-height: calc(100vh - 90px);
+
+    background: #572018;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 120px 0 0 120px;
+
+    margin: 35px 0 35px 35px;
+
+    box-shadow:
+        -20px 20px 60px rgba(91, 33, 25, 0.12);
+}
+
+
+/* =========================================================
+   ORGANIC ORANGE SHAPE
+========================================================= */
+
+.orange-blob {
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    background: #ed672f;
+
+    border-radius:
+        57% 43% 63% 37%
+        /
+        42% 58% 42% 58%;
+
+    right: -190px;
+    top: -150px;
+
+    opacity: 0.13;
+
+    animation: blobMove 10s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   DECORATIVE CIRCLES
+========================================================= */
+
+.decor-circle {
+    position: absolute;
+
+    border: 1px solid rgba(244, 193, 93, 0.25);
+
+    border-radius: 50%;
+}
+
+
+.circle-one {
+    width: 510px;
+    height: 510px;
+
+    animation: slowRotate 22s linear infinite;
+}
+
+
+.circle-two {
+    width: 390px;
+    height: 390px;
+
+    border-color: rgba(255, 255, 255, 0.12);
+
+    animation: reverseRotate 18s linear infinite;
+}
+
+
+/* =========================================================
+   FLOATING ITEMS
+========================================================= */
+
+.floating-item {
+    position: absolute;
+    z-index: 2;
+
+    user-select: none;
+}
+
+
+.tomato {
+    color: #f15f32;
+    font-size: 22px;
+}
+
+
+.tomato-one {
+    top: 24%;
+    left: 18%;
+
+    animation: floatOne 5s ease-in-out infinite;
+}
+
+
+.tomato-two {
+    right: 16%;
+    bottom: 30%;
+
+    animation: floatTwo 6s ease-in-out infinite;
+}
+
+
+.leaf {
+    color: #f4c15d;
+    font-size: 45px;
+
+    opacity: 0.8;
+}
+
+
+.leaf-one {
+    left: 12%;
+    bottom: 20%;
+
+    transform: rotate(-25deg);
+
+    animation: leafFloat 7s ease-in-out infinite;
+}
+
+
+.leaf-two {
+    right: 13%;
+    top: 31%;
+
+    transform: rotate(25deg);
+
+    animation: leafFloat 8s ease-in-out infinite reverse;
+}
+
+
+.sparkle {
+    color: #f4c15d;
+    font-size: 24px;
+
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+
+.sparkle-one {
+    left: 27%;
+    top: 35%;
+}
+
+
+.sparkle-two {
+    right: 20%;
+    bottom: 25%;
+
+    animation-delay: 1s;
+}
+
+
+/* =========================================================
+   DISH SCENE
+========================================================= */
+
+.dish-scene {
+    position: relative;
+
+    width: 540px;
+    height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3;
+
+    animation: dishEntrance 1.2s ease forwards;
+}
+
+
+/* =========================================================
+   STEAM
+========================================================= */
+
+.steam {
+    position: absolute;
+
+    width: 9px;
+    height: 95px;
+
+    border-left: 4px solid rgba(255, 244, 223, 0.65);
+
+    border-radius: 50%;
+
+    top: 45px;
+
+    opacity: 0;
+}
+
+
+.steam-one {
+    left: 235px;
+
+    animation: steam 3s ease-in-out infinite;
+}
+
+
+.steam-two {
+    left: 270px;
+
+    animation: steam 3s ease-in-out 0.8s infinite;
+}
+
+
+.steam-three {
+    left: 305px;
+
+    animation: steam 3s ease-in-out 1.5s infinite;
+}
+
+
+/* =========================================================
+   CHOPSTICKS
+========================================================= */
+
+.chopstick {
+    position: absolute;
+
+    width: 180px;
+    height: 9px;
+
+    border-radius: 10px;
+
+    background: #f4c15d;
+
+    right: 90px;
+}
+
+
+.chopstick-one {
+    top: 175px;
+
+    transform: rotate(-19deg);
+
+    animation: chopstickMove 4s ease-in-out infinite;
+}
+
+
+.chopstick-two {
+    top: 192px;
+
+    transform: rotate(-19deg);
+
+    animation: chopstickMove 4s ease-in-out 0.3s infinite;
+}
+
+
+/* =========================================================
+   PLATE
+========================================================= */
+
+.plate {
+    position: absolute;
+
+    width: 410px;
+    height: 250px;
+
+    background: #fff6e8;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 35px 60px rgba(0, 0, 0, 0.25);
+
+    transform: rotate(-5deg);
+
+    animation: plateFloat 5s ease-in-out infinite;
+}
+
+
+.plate::before {
+    content: "";
+
+    position: absolute;
+
+    width: 340px;
+    height: 185px;
+
+    left: 35px;
+    top: 30px;
+
+    background: #e86a28;
+
+    border-radius: 50%;
+}
+
+
+.plate-inner {
+    position: absolute;
+
+    width: 305px;
+    height: 160px;
+
+    left: 52px;
+    top: 43px;
+
+    border-radius: 50%;
+
+    background: #c94f20;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOD
+========================================================= */
+
+.food {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* noodles */
+
+.noodle {
+    position: absolute;
+
+    width: 125px;
+    height: 35px;
+
+    border-bottom: 7px solid #f6c55d;
+
+    border-radius: 50%;
+}
+
+
+.noodle-one {
+    left: 55px;
+    top: 48px;
+
+    transform: rotate(12deg);
+}
+
+
+.noodle-two {
+    left: 90px;
+    top: 72px;
+
+    transform: rotate(-8deg);
+}
+
+
+.noodle-three {
+    left: 125px;
+    top: 45px;
+
+    transform: rotate(10deg);
+}
+
+
+.noodle-four {
+    left: 75px;
+    top: 92px;
+
+    transform: rotate(4deg);
+}
+
+
+/* =========================================================
+   INGREDIENTS
+========================================================= */
+
+.ingredient {
+    position: absolute;
+}
+
+
+.tomato-piece {
+    width: 27px;
+    height: 27px;
+
+    background: #f15f32;
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset -4px -4px 0 rgba(130, 40, 20, 0.18);
+}
+
+
+.piece-one {
+    left: 75px;
+    top: 42px;
+
+    animation: foodBounce 3s ease-in-out infinite;
+}
+
+
+.piece-two {
+    right: 70px;
+    bottom: 40px;
+
+    animation: foodBounce 3s ease-in-out 0.6s infinite;
+}
+
+
+.green-piece {
+    width: 28px;
+    height: 15px;
+
+    background: #71853d;
+
+    border-radius: 80% 20% 80% 20%;
+}
+
+
+.green-one {
+    left: 115px;
+    top: 35px;
+
+    transform: rotate(35deg);
+}
+
+
+.green-two {
+    right: 90px;
+    top: 78px;
+
+    transform: rotate(-30deg);
+}
+
+
+.onion {
+    width: 22px;
+    height: 12px;
+
+    border: 4px solid #f5e0c0;
+
+    border-bottom: none;
+
+    border-radius: 20px 20px 0 0;
+}
+
+
+.onion-one {
+    left: 175px;
+    top: 45px;
+
+    transform: rotate(20deg);
+}
+
+
+.onion-two {
+    left: 190px;
+    top: 82px;
+
+    transform: rotate(-15deg);
+}
+
+
+/* =========================================================
+   FOOD MESSAGE
+========================================================= */
+
+.food-message {
+    position: absolute;
+
+    bottom: 55px;
+
+    text-align: center;
+
+    z-index: 5;
+
+    animation: messageIn 1s ease 0.7s both;
+}
+
+
+.food-message p {
+    color: #f4c15d;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 8px;
+}
+
+
+.food-message h2 {
+    color: #fff6e8;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    margin-bottom: 6px;
+}
+
+
+.food-message span {
+    color: rgba(255, 246, 232, 0.65);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes loginContentIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes titleIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes dishEntrance {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(80px)
+            rotate(8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(0)
+            rotate(0);
+    }
+}
+
+
+@keyframes plateFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-16px)
+            rotate(-2deg);
+    }
+}
+
+
+@keyframes steam {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scaleY(0.7);
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-55px)
+            scaleY(1.2);
+    }
+}
+
+
+@keyframes floatOne {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+@keyframes floatTwo {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(18px);
+    }
+}
+
+
+@keyframes leafFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-25deg);
+    }
+
+    50% {
+        transform:
+            translateY(-20px)
+            rotate(10deg);
+    }
+}
+
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(90deg);
+    }
+}
+
+
+@keyframes foodBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+@keyframes chopstickMove {
+
+    0%,
+    100% {
+        transform: rotate(-19deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+}
+
+
+@keyframes slowRotate {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes reverseRotate {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0);
+    }
+}
+
+
+@keyframes blobMove {
+
+    0%,
+    100% {
+        transform:
+            rotate(0deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(20deg)
+            scale(1.1);
+    }
+}
+
+
+@keyframes messageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .login-content {
+        padding: 70px 8%;
+    }
+
+    .login-food {
+        min-height: 650px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .login-content {
+        padding: 55px 7%;
+    }
+
+    .login-content h1 {
+        font-size: 54px;
+        letter-spacing: -3px;
+    }
+
+    .login-food {
+        min-height: 520px;
+    }
+
+    .dish-scene {
+        transform: scale(0.72);
+    }
+
+    .food-message {
+        bottom: 30px;
+    }
+
+}

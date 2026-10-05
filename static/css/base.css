@@ -1,0 +1,799 @@
+/* =========================================================
+   QUICKBITE - BASE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: #fff2d2;
+    color: #4b1f18;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav {
+    height: 90px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    z-index: 100;
+
+    background: #fff2d2;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    position: relative;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FOOD ICON
+========================================================= */
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+
+    position: relative;
+
+    display: block;
+}
+
+
+/* plate */
+
+.brand-icon .plate {
+    position: absolute;
+
+    width: 30px;
+    height: 10px;
+
+    left: 2px;
+    bottom: 5px;
+
+    background: #f15f32;
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.brand-icon .plate::after {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 5px;
+
+    left: 4px;
+    top: 2px;
+
+    background: #f4c15d;
+
+    border-radius: 50%;
+}
+
+
+/* small food */
+
+.brand-icon .food {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: #572018;
+
+    border-radius: 50%;
+
+    left: 14px;
+    bottom: 11px;
+
+    box-shadow:
+        8px 1px 0 #572018,
+        -6px -2px 0 #572018;
+}
+
+
+/* =========================================================
+   STEAM
+========================================================= */
+
+.brand-icon .steam {
+    position: absolute;
+
+    width: 5px;
+    height: 13px;
+
+    border-left: 2px solid #f15f32;
+
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+
+.brand-icon .steam-one {
+    left: 11px;
+    bottom: 18px;
+
+    animation: logoSteam 2.8s ease-in-out infinite;
+}
+
+
+.brand-icon .steam-two {
+    left: 21px;
+    bottom: 18px;
+
+    animation:
+        logoSteam 2.8s ease-in-out 0.8s infinite;
+}
+
+
+@keyframes logoSteam {
+
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    35% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   BRAND NAME
+========================================================= */
+
+.brand-name {
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    color: #572018;
+
+    line-height: 1;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.brand:hover .brand-name {
+    color: #ed672f;
+
+    transform: translateX(2px);
+}
+
+
+.brand:hover .plate {
+    transform:
+        rotate(-8deg) translateY(-2px);
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 34px;
+}
+
+
+.nav-item {
+    position: relative;
+
+    color: #572018;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 10px 0;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.nav-item::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 2px;
+
+    width: 0;
+    height: 2px;
+
+    background: #f15f32;
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+
+    transition:
+        width 0.3s ease;
+}
+
+
+.nav-item:hover {
+    color: #f15f32;
+
+    transform: translateY(-2px);
+}
+
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-text {
+    color: #70453d;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   NAVBAR BOTTOM DETAIL
+========================================================= */
+
+nav::after {
+    content: "";
+
+    position: absolute;
+
+    left: 7%;
+    right: 7%;
+
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(to right,
+            transparent,
+            rgba(87, 32, 24, 0.12),
+            transparent);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 0 5%;
+    }
+
+    .brand-name {
+        font-size: 27px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-item {
+        font-size: 14px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    nav {
+        height: 75px;
+    }
+
+    .brand-icon {
+        transform: scale(0.85);
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .welcome-text {
+        display: none;
+    }
+
+}
+
+/* =========================================================
+   QUICKBITE FOOD LOGO
+========================================================= */
+
+.qb-food-icon {
+    width: 40px;
+    height: 38px;
+
+    position: relative;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+}
+
+
+/* ---------------------------------------------------------
+   PLATE
+--------------------------------------------------------- */
+
+.qb-plate {
+    position: absolute;
+
+    width: 31px;
+    height: 11px;
+
+    left: 3px;
+    bottom: 6px;
+
+    background: #f15f32;
+
+    border-radius: 50%;
+
+    border-bottom: 3px solid #572018;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.qb-plate::before {
+    content: "";
+
+    position: absolute;
+
+    width: 23px;
+    height: 6px;
+
+    left: 4px;
+    top: 1px;
+
+    background: #f4c15d;
+
+    border-radius: 50%;
+}
+
+
+/* ---------------------------------------------------------
+   FOOD IN THE PLATE
+--------------------------------------------------------- */
+
+.qb-food-center {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    left: 13px;
+    bottom: 12px;
+
+    background: #572018;
+
+    border-radius: 50%;
+
+    box-shadow:
+        8px -1px 0 #572018,
+        -7px -1px 0 #572018;
+}
+
+
+/* ---------------------------------------------------------
+   FORK
+--------------------------------------------------------- */
+
+.qb-fork {
+    position: absolute;
+
+    width: 3px;
+    height: 23px;
+
+    right: 2px;
+    bottom: 4px;
+
+    background: #572018;
+
+    border-radius: 4px;
+
+    transform: rotate(12deg);
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+/* fork teeth */
+
+.qb-fork::before {
+    content: "";
+
+    position: absolute;
+
+    width: 3px;
+    height: 8px;
+
+    top: -5px;
+    left: -5px;
+
+    background: #572018;
+
+    border-radius: 3px;
+
+    box-shadow:
+        5px 0 0 #572018,
+        10px 0 0 #572018;
+}
+
+
+/* ---------------------------------------------------------
+   STEAM
+--------------------------------------------------------- */
+
+.qb-steam {
+    position: absolute;
+
+    width: 5px;
+    height: 14px;
+
+    border-left: 2px solid #ed672f;
+
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+
+.qb-steam-one {
+    left: 11px;
+    bottom: 20px;
+
+    animation:
+        qbSteam 2.5s ease-in-out infinite;
+}
+
+
+.qb-steam-two {
+    left: 21px;
+    bottom: 20px;
+
+    animation:
+        qbSteam 2.5s ease-in-out 0.8s infinite;
+}
+
+
+@keyframes qbSteam {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(5px) scaleY(0.7);
+    }
+
+    35% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-9px) scaleY(1.1);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   BRAND HOVER
+--------------------------------------------------------- */
+
+.brand:hover .qb-plate {
+    transform:
+        rotate(-8deg) translateY(-2px);
+}
+
+
+.brand:hover .qb-fork {
+    transform:
+        rotate(20deg) translateY(-2px);
+}
+
+/* =========================================================
+   NAVBAR FOOD ELEMENTS
+========================================================= */
+
+.nav-food-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
+/* ---------------------------------------------------------
+   ICON BASE
+--------------------------------------------------------- */
+
+.nav-food-icon {
+    position: relative;
+
+    width: 18px;
+    height: 18px;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    opacity: 0.85;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   FORK
+--------------------------------------------------------- */
+
+.nav-fork {
+    width: 4px;
+    height: 15px;
+
+    background: #f15f32;
+
+    border-radius: 5px;
+
+    margin-left: 3px;
+
+    transform: rotate(-12deg);
+}
+
+
+.nav-fork::before {
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+    height: 6px;
+
+    left: -4px;
+    top: -2px;
+
+    background: #f15f32;
+
+    border-radius: 2px;
+
+    box-shadow:
+        4px 0 0 #f15f32,
+        8px 0 0 #f15f32;
+}
+
+
+/* ---------------------------------------------------------
+   SPOON
+--------------------------------------------------------- */
+
+.nav-spoon {
+    width: 5px;
+    height: 13px;
+
+    background: #f15f32;
+
+    border-radius: 8px;
+
+    margin-left: 5px;
+
+    transform: rotate(-25deg);
+}
+
+
+.nav-spoon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    left: -2px;
+    top: -6px;
+
+    background: #f15f32;
+
+    border-radius: 50%;
+}
+
+
+/* ---------------------------------------------------------
+   PLATE
+--------------------------------------------------------- */
+
+.nav-plate {
+    width: 17px;
+    height: 7px;
+
+    background: #f15f32;
+
+    border-radius: 50%;
+
+    margin-top: 3px;
+}
+
+
+.nav-plate::before {
+    content: "";
+
+    position: absolute;
+
+    width: 11px;
+    height: 4px;
+
+    left: 3px;
+    top: 1px;
+
+    background: #f4c15d;
+
+    border-radius: 50%;
+}
+
+
+.nav-plate::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 1px;
+
+    left: -2px;
+    bottom: -4px;
+
+    background: #572018;
+
+    opacity: 0.5;
+}
+
+
+/* ---------------------------------------------------------
+   STAR / SPARK
+--------------------------------------------------------- */
+
+.nav-star {
+    width: 12px;
+    height: 12px;
+
+    margin-right: 2px;
+
+    background: #f4c15d;
+
+    clip-path: polygon(50% 0%,
+            61% 38%,
+            100% 50%,
+            61% 62%,
+            50% 100%,
+            39% 62%,
+            0% 50%,
+            39% 38%);
+
+    animation:
+        navSpark 3s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+--------------------------------------------------------- */
+
+.nav-food-item:hover .nav-food-icon {
+    opacity: 1;
+
+    transform:
+        translateY(-2px) rotate(-8deg);
+}
+
+
+.nav-food-item:hover .nav-plate {
+    transform:
+        translateY(-3px) rotate(-8deg);
+}
+
+
+.nav-food-item:hover .nav-fork {
+    transform:
+        translateY(-2px) rotate(8deg);
+}
+
+
+.nav-food-item:hover .nav-spoon {
+    transform:
+        translateY(-2px) rotate(-12deg);
+}
+
+
+.nav-food-item:hover .nav-star {
+    transform:
+        scale(1.2) rotate(25deg);
+}
+
+
+@keyframes navSpark {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}

@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}
+QuickBite Administration
+{% endblock %}
+
+
+{% block extrastyle %}
+{{ block.super }}
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/admin.css' %}"
+>
+
+{% endblock %}
+
+
+{% block branding %}
+
+<div class="qb-admin-brand">
+
+    <a href="{% url 'admin:index' %}" class="qb-admin-logo">
+
+        <span class="qb-admin-food">
+
+            <span class="qb-admin-plate"></span>
+
+            <span class="qb-admin-food-dot"></span>
+
+            <span class="qb-admin-steam steam-one"></span>
+            <span class="qb-admin-steam steam-two"></span>
+
+        </span>
+
+        <span class="qb-admin-name">
+            QuickBite
+        </span>
+
+    </a>
+
+    <span class="qb-admin-label">
+        RESTAURANT ADMIN
+    </span>
+
+</div>
+
+{% endblock %}

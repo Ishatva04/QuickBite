@@ -1,15 +1,179 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock %}
+
 
 {% block content %}
 
-<section>
-    <h1>Welcome to QuickBite</h1>
+<section class="hero">
 
-    <p>Delicious food, made with care.</p>
+    <div class="hero-content">
 
-    <a href="{% url 'menu' %}">
-        Explore the Menu
-    </a>
+        <p class="hero-small-text">
+            WELCOME TO QUICKBITE
+        </p>
+
+        <h1>
+            GOOD FOOD,
+            <br>
+            GREAT
+            <br>
+            MOMENTS!
+        </h1>
+
+        <p class="hero-description">
+            Delicious food, made with care.
+            Enjoy your favorite dishes inside our restaurant.
+        </p>
+
+        <a href="{% url 'menu' %}" class="hero-button">
+            Explore the Menu
+            <span>→</span>
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <div class="food-placeholder">
+
+            <svg class="food-svg"
+                 viewBox="0 0 400 400"
+                 xmlns="http://www.w3.org/2000/svg">
+
+
+                <!-- =========================
+                     STEAM
+                ========================== -->
+
+                <path class="steam steam-one"
+                      d="M175 105 C155 85, 190 70, 170 45"
+                      fill="none"
+                      stroke="#fff4df"
+                      stroke-width="7"
+                      stroke-linecap="round"/>
+
+                <path class="steam steam-two"
+                      d="M205 105 C185 80, 220 65, 205 35"
+                      fill="none"
+                      stroke="#fff4df"
+                      stroke-width="7"
+                      stroke-linecap="round"/>
+
+                <path class="steam steam-three"
+                      d="M235 105 C215 80, 250 65, 235 45"
+                      fill="none"
+                      stroke="#fff4df"
+                      stroke-width="7"
+                      stroke-linecap="round"/>
+
+
+                <!-- =========================
+                     CHOPSTICKS
+                ========================== -->
+
+                <line x1="210"
+                      y1="110"
+                      x2="290"
+                      y2="95"
+                      stroke="#6b351f"
+                      stroke-width="8"
+                      stroke-linecap="round"/>
+
+                <line x1="215"
+                      y1="120"
+                      x2="295"
+                      y2="105"
+                      stroke="#6b351f"
+                      stroke-width="8"
+                      stroke-linecap="round"/>
+
+
+                <!-- =========================
+                     BOWL
+                ========================== -->
+
+                <path d="M115 180
+                         Q200 215 285 180
+                         L270 245
+                         Q200 300 130 245
+                         Z"
+                      fill="#fff5e6"/>
+
+
+                <!-- Bowl Rim -->
+
+                <ellipse cx="200"
+                         cy="180"
+                         rx="85"
+                         ry="30"
+                         fill="#f6f0e4"/>
+
+                <ellipse cx="200"
+                         cy="180"
+                         rx="72"
+                         ry="20"
+                         fill="#e66b22"/>
+
+
+                <!-- =========================
+                     NOODLES
+                ========================== -->
+
+                <path d="M155 175
+                         C160 145, 170 145, 175 175
+                         C180 200, 190 200, 195 175
+                         C200 145, 210 145, 215 175
+                         C220 200, 230 200, 235 175
+                         C240 145, 250 145, 255 175"
+                      fill="none"
+                      stroke="#f4c15d"
+                      stroke-width="8"
+                      stroke-linecap="round"/>
+
+
+                <!-- =========================
+                     BOWL DECORATION
+                ========================== -->
+
+                <path d="M135 215
+                         Q200 240 265 215"
+                      fill="none"
+                      stroke="#e66b22"
+                      stroke-width="5"/>
+
+                <circle cx="160"
+                        cy="225"
+                        r="4"
+                        fill="#e66b22"/>
+
+                <circle cx="180"
+                        cy="232"
+                        r="4"
+                        fill="#e66b22"/>
+
+                <circle cx="220"
+                        cy="232"
+                        r="4"
+                        fill="#e66b22"/>
+
+                <circle cx="240"
+                        cy="225"
+                        r="4"
+                        fill="#e66b22"/>
+
+            </svg>
+
+        </div>
+
+    </div>
+
 </section>
 
 {% endblock %}

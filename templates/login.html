@@ -1,31 +1,213 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Login</h1>
-{% if error %}
-    <p>{{ error }}</p>
-{% endif %}
+<section class="login-page">
 
-<form method="POST">
+    <!-- LEFT SIDE -->
 
-    {% csrf_token %}
+    <div class="login-content">
 
-    {% if next %}
-        <input type="hidden" name="next" value="{{ next }}">
-    {% endif %}
-    <label>Username</label>
-    <input type="text" name="username">
+        <p class="login-label">
+            WELCOME BACK
+        </p>
 
-    <label>Password</label>
-    <input type="password" name="password">
+        <h1>
+            GOOD FOOD
+            <br>
+            IS WAITING
+            <br>
+            <span>FOR YOU.</span>
+        </h1>
 
-    <button type="submit">Login</button>
-    <p>
-        Don't have an account?
-        <a href="{% url 'signup' %}?next={{ next }}">Sign Up</a>
-    </p>
+        <p class="login-description">
+            Sign in to continue your QuickBite
+            restaurant experience.
+        </p>
 
-</form>
+        {% if error %}
+            <div class="login-error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" class="login-form">
+
+            {% csrf_token %}
+
+            {% if next %}
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ next }}"
+                >
+            {% endif %}
+
+            <div class="input-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                    >
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                <span>Login</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+            <p class="signup-text">
+                Don't have an account?
+
+                <a href="{% url 'signup' %}?next={{ next }}">
+                    Sign Up
+                    <span>→</span>
+                </a>
+            </p>
+
+        </form>
+
+    </div>
+
+
+    <!-- RIGHT FOOD EXPERIENCE -->
+
+    <div class="login-food">
+
+        <!-- background decoration -->
+
+        <div class="orange-blob"></div>
+
+        <div class="decor-circle circle-one"></div>
+        <div class="decor-circle circle-two"></div>
+
+        <!-- floating ingredients -->
+
+        <div class="floating-item tomato tomato-one">●</div>
+        <div class="floating-item tomato tomato-two">●</div>
+
+        <div class="floating-item leaf leaf-one">❧</div>
+        <div class="floating-item leaf leaf-two">❧</div>
+
+        <div class="floating-item sparkle sparkle-one">✦</div>
+        <div class="floating-item sparkle sparkle-two">✦</div>
+
+        <!-- MAIN DISH -->
+
+        <div class="dish-scene">
+
+            <!-- steam -->
+
+            <div class="steam steam-one"></div>
+            <div class="steam steam-two"></div>
+            <div class="steam steam-three"></div>
+
+            <!-- chopsticks -->
+
+            <div class="chopstick chopstick-one"></div>
+            <div class="chopstick chopstick-two"></div>
+
+            <!-- plate -->
+
+            <div class="plate">
+
+                <div class="plate-inner">
+
+                    <!-- food -->
+
+                    <div class="food">
+
+                        <div class="noodle noodle-one"></div>
+                        <div class="noodle noodle-two"></div>
+                        <div class="noodle noodle-three"></div>
+                        <div class="noodle noodle-four"></div>
+
+                        <div class="ingredient tomato-piece piece-one"></div>
+                        <div class="ingredient tomato-piece piece-two"></div>
+
+                        <div class="ingredient green-piece green-one"></div>
+                        <div class="ingredient green-piece green-two"></div>
+
+                        <div class="ingredient onion onion-one"></div>
+                        <div class="ingredient onion onion-two"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="food-message">
+
+            <p>
+                FRESHLY PREPARED
+            </p>
+
+            <h2>
+                Made with care.
+            </h2>
+
+            <span>
+                Taste the difference.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

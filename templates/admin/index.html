@@ -1,0 +1,401 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+
+<div class="qb-dashboard">
+
+    <!-- Dashboard Header -->
+
+    <div class="qb-dashboard-header">
+
+        <div>
+
+            <p class="qb-dashboard-label">
+                QUICKBITE RESTAURANT
+            </p>
+
+            <h1>
+                Welcome back 👋
+            </h1>
+
+            <p>
+                Here's what's happening in your restaurant today.
+            </p>
+
+        </div>
+
+        <div class="qb-dashboard-date">
+
+            <span>TODAY</span>
+
+            <strong>
+                {% now "j F Y" %}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="qb-stat-grid">
+
+        <a
+            href="{% url 'admin:management_order_changelist' %}"
+            class="qb-stat-card"
+        >
+
+            <div class="qb-stat-icon orange-icon">
+                🍽
+            </div>
+
+            <div>
+
+                <p>ORDERS TODAY</p>
+
+                <h2>
+                    {{ qb_orders_today }}
+                </h2>
+
+            </div>
+
+            <span class="qb-card-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'admin:management_order_changelist' %}?status=preparing"
+            class="qb-stat-card"
+        >
+
+            <div class="qb-stat-icon yellow-icon">
+                ◌
+            </div>
+
+            <div>
+
+                <p>PREPARING</p>
+
+                <h2>
+                    {{ qb_preparing_orders }}
+                </h2>
+
+            </div>
+
+            <span class="qb-card-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'admin:menu_food_changelist' %}"
+            class="qb-stat-card"
+        >
+
+            <div class="qb-stat-icon orange-icon">
+                🍴
+            </div>
+
+            <div>
+
+                <p>AVAILABLE FOODS</p>
+
+                <h2>
+                    {{ qb_available_foods }}
+                </h2>
+
+            </div>
+
+            <span class="qb-card-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{% url 'admin:accounts_customerprofile_changelist' %}"
+            class="qb-stat-card"
+        >
+
+            <div class="qb-stat-icon yellow-icon">
+                ●
+            </div>
+
+            <div>
+
+                <p>CUSTOMERS</p>
+
+                <h2>
+                    {{ qb_customers }}
+                </h2>
+
+            </div>
+
+            <span class="qb-card-arrow">
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Dashboard -->
+
+    <div class="qb-dashboard-columns">
+
+
+        <!-- Recent Orders -->
+
+        <section class="qb-dashboard-card orders-card">
+
+            <div class="qb-card-heading">
+
+                <div>
+
+                    <p>RESTAURANT ACTIVITY</p>
+
+                    <h2>
+                        Recent Orders
+                    </h2>
+
+                </div>
+
+                <a href="{% url 'admin:management_order_changelist' %}">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="qb-orders-list">
+
+                {% for order in qb_recent_orders %}
+
+                    <a
+                        href="{% url 'admin:management_order_change' order.id %}"
+                        class="qb-order-row"
+                    >
+
+                        <div class="qb-order-number">
+
+                            <span>
+                                ORDER
+                            </span>
+
+                            <strong>
+                                #{{ order.id }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="qb-order-customer">
+
+                            <strong>
+                                {{ order.user.username }}
+                            </strong>
+
+                            <span>
+                                {{ order.created_at|date:"g:i A" }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="qb-order-status status-{{ order.status }}">
+
+                            {{ order.status|title }}
+
+                        </div>
+
+
+                        <span class="qb-row-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                {% empty %}
+
+                    <div class="qb-empty">
+
+                        <span>🍽</span>
+
+                        <p>
+                            No orders yet.
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+
+        <section class="qb-dashboard-card quick-card">
+
+            <div class="qb-card-heading">
+
+                <div>
+
+                    <p>QUICKBITE MANAGEMENT</p>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="qb-quick-actions">
+
+
+                <a
+                    href="{% url 'admin:menu_food_add' %}"
+                    class="qb-action"
+                >
+
+                    <span class="action-icon">
+                        🍴
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Add Food
+                        </strong>
+
+                        <span>
+                            Add a new menu item
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </a>
+
+
+                <a
+                    href="{% url 'admin:menu_category_add' %}"
+                    class="qb-action"
+                >
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Add Category
+                        </strong>
+
+                        <span>
+                            Create a menu category
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </a>
+
+
+                <a
+                    href="{% url 'admin:management_restauranttable_changelist' %}"
+                    class="qb-action"
+                >
+
+                    <span class="action-icon">
+                        ▢
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Restaurant Tables
+                        </strong>
+
+                        <span>
+                            Manage your tables
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </a>
+
+
+                <a
+                    href="{% url 'admin:management_payment_changelist' %}"
+                    class="qb-action"
+                >
+
+                    <span class="action-icon">
+                        ₹
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Payments
+                        </strong>
+
+                        <span>
+                            View payment records
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Existing Django Admin -->
+
+    <section class="qb-admin-apps">
+
+        <div class="qb-card-heading">
+
+            <div>
+
+                <p>SYSTEM MANAGEMENT</p>
+
+                <h2>
+                    Manage QuickBite
+                </h2>
+
+            </div>
+
+        </div>
+
+        {{ block.super }}
+
+    </section>
+
+</div>
+
+{% endblock %}

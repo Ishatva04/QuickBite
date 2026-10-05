@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RestaurantTable, Order, OrderItem, Payment
 from menu.models import Food
-from .models import RestaurantTable
 from django.urls import reverse
 from datetime import timedelta
 from django.utils import timezone
 from django.conf import settings
 import razorpay
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
+from reportlab.pdfgen import canvas
+from accounts.models import CustomerProfile
+from .whatsapp import send_whatsapp_invoice
 
 
 def table_menu(request, table_id):
@@ -133,7 +135,15 @@ def my_orders(request):
 
 
 
+def get_invoice_url(order, request):
+    path = reverse(
+        "invoice_pdf",
+        args=[order.id]
+    )
 
+    return settings.PUBLIC_BASE_URL + (
+        path + "?token=" + str(order.invoice_token)
+    )
 
 
 
@@ -177,7 +187,30 @@ def payment_verify(request):
         payment.order.status = "confirmed"
         payment.order.save()
 
-        request.session["cart"] = {}
+        profile = CustomerProfile.objects.filter(
+            user=payment.order.user
+        ).first()
+
+        if profile and profile.phone_number:
+
+            phone_number = "91" + profile.phone_number
+
+            invoice_url = get_invoice_url(
+                payment.order,
+                request
+            )
+
+            whatsapp_response = send_whatsapp_invoice(
+                phone_number,
+                invoice_url,
+                payment.order.user.first_name or payment.order.user.username,
+                payment.order.id
+            )
+
+            print("INVOICE URL:", invoice_url)
+            print("WHATSAPP STATUS:", whatsapp_response.status_code)
+            print("WHATSAPP RESPONSE:", whatsapp_response.text)
+
 
         return JsonResponse({
             "success": True,
@@ -219,3 +252,66 @@ def payment_failed(request):
     return JsonResponse({
         "success": True
     })
+
+
+
+
+def invoice(request, order_id):
+    order = get_object_or_404(
+        Order,
+        id=order_id,
+        user=request.user
+    )
+
+    items = order.orderitem_set.all()
+
+    return render(
+        request,
+        "invoice.html",
+        {
+            "order": order,
+            "items": items,
+        }
+    )
+
+
+def invoice_pdf(request, order_id):
+    token = request.GET.get("token")
+    order = get_object_or_404(
+        Order,
+        id=order_id,
+        invoice_token=token
+    )
+
+    response = HttpResponse(
+        content_type="application/pdf"
+    )
+
+    response["Content-Disposition"] = (
+        f'attachment; filename="invoice_{order.id}.pdf"'
+    )
+
+    pdf = canvas.Canvas(response)
+
+
+    pdf.drawString(100, 800, "QuickBite Invoice")
+    pdf.drawString(100, 760, f"Order ID: #{order.id}")
+    pdf.drawString(100, 740, f"Customer: {order.user.username}")
+    pdf.drawString(100, 720, f"Date: {order.created_at}")
+
+    y = 680
+
+    for item in order.orderitem_set.all():
+        pdf.drawString(
+            100,
+            y,
+            f"{item.food.name} | Qty: {item.quantity} | ₹{item.subtotal}"
+        )
+        y -= 30
+
+    pdf.drawString(100, y - 20, f"Total: ₹{order.total}")
+    pdf.drawString(100, y - 40, "Payment: Successful")
+
+    pdf.save()
+
+    return response

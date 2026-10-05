@@ -1,0 +1,678 @@
+/* =========================================================
+   QUICKBITE - CHECKOUT
+   Order review + payment
+========================================================= */
+
+
+/* =========================================================
+   CHECKOUT PAGE
+========================================================= */
+
+.checkout-page {
+    min-height: calc(100vh - 90px);
+
+    padding: 55px 7% 80px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.checkout-header {
+    margin-bottom: 42px;
+
+    position: relative;
+
+    z-index: 2;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    animation:
+        checkoutHeaderEnter 0.8s ease forwards;
+}
+
+
+.checkout-label {
+    color: #ed672f;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+
+.checkout-header h1 {
+    color: #572018;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(55px, 7vw, 95px);
+
+    line-height: 0.9;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 20px;
+}
+
+
+.checkout-description {
+    color: #70453d;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.checkout-layout {
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 340px;
+
+    gap: 30px;
+
+    align-items: start;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   ORDER SECTION
+========================================================= */
+
+.checkout-order {
+    background: #fff5e6;
+
+    border-radius: 28px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 15px 35px rgba(87, 32, 24, 0.07);
+
+    opacity: 0;
+
+    transform: translateX(-30px);
+
+    animation:
+        checkoutOrderEnter 0.8s ease 0.15s forwards;
+}
+
+
+/* =========================================================
+   ORDER HEADER
+========================================================= */
+
+.checkout-order-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid rgba(87, 32, 24, 0.12);
+
+    margin-bottom: 8px;
+}
+
+
+.checkout-order-header p {
+    color: #ed672f;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.checkout-order-header span {
+    color: #70453d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CHECKOUT ITEMS
+========================================================= */
+
+.checkout-items {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   CHECKOUT ITEM
+========================================================= */
+
+.checkout-item {
+    min-height: 90px;
+
+    display: grid;
+
+    grid-template-columns: 55px 1fr auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    border-bottom: 1px solid rgba(87, 32, 24, 0.08);
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation:
+        checkoutItemEnter 0.5s ease forwards;
+}
+
+
+.checkout-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   STAGGER ITEMS
+========================================================= */
+
+.checkout-item:nth-child(1) {
+    animation-delay: 0.25s;
+}
+
+.checkout-item:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.checkout-item:nth-child(3) {
+    animation-delay: 0.45s;
+}
+
+.checkout-item:nth-child(4) {
+    animation-delay: 0.55s;
+}
+
+.checkout-item:nth-child(5) {
+    animation-delay: 0.65s;
+}
+
+
+/* =========================================================
+   FOOD ICON
+========================================================= */
+
+.checkout-food-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+
+    background: #ed672f;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.checkout-item:hover .checkout-food-icon {
+    transform:
+        rotate(8deg)
+        scale(1.06);
+
+    background: #572018;
+}
+
+
+/* =========================================================
+   FOOD INFORMATION
+========================================================= */
+
+.checkout-food-info h2 {
+    color: #572018;
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+
+.checkout-food-info p {
+    color: #70453d;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SUBTOTAL
+========================================================= */
+
+.checkout-subtotal {
+    color: #572018;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   PAYMENT SUMMARY
+========================================================= */
+
+.checkout-summary {
+    padding: 30px;
+
+    background: #572018;
+
+    border-radius: 28px;
+
+    position: sticky;
+
+    top: 25px;
+
+    box-shadow:
+        0 20px 40px rgba(87, 32, 24, 0.16);
+
+    opacity: 0;
+
+    transform: translateX(30px);
+
+    animation:
+        checkoutSummaryEnter 0.8s ease 0.25s forwards;
+}
+
+
+/* =========================================================
+   SUMMARY LABEL
+========================================================= */
+
+.summary-label {
+    color: #f4c15d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+
+.checkout-summary h2 {
+    color: #fff5e6;
+
+    font-family: Georgia, serif;
+
+    font-size: 31px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.checkout-total {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid rgba(255, 245, 230, 0.2);
+
+    margin-bottom: 18px;
+}
+
+
+.checkout-total span {
+    color: #fff5e6;
+
+    font-size: 15px;
+}
+
+
+.checkout-total strong {
+    color: #f4c15d;
+
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   PAYMENT NOTE
+========================================================= */
+
+.payment-note {
+    color: rgba(255, 245, 230, 0.7);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   PAY BUTTON
+========================================================= */
+
+.pay-button {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #ed672f;
+
+    color: #fff5e6;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.pay-button span {
+    font-size: 21px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.pay-button:hover {
+    background: #f4c15d;
+
+    color: #572018;
+
+    transform: translateY(-3px);
+}
+
+
+.pay-button:hover span {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   DECORATION
+========================================================= */
+
+.checkout-page::before {
+    content: "";
+
+    width: 250px;
+    height: 250px;
+
+    border: 2px solid #f4c15d;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    right: -120px;
+    top: 150px;
+
+    opacity: 0.4;
+
+    animation:
+        checkoutCircleFloat 8s ease-in-out infinite;
+}
+
+
+.checkout-page::after {
+    content: "";
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: #ed672f;
+
+    position: absolute;
+
+    left: 4%;
+    bottom: 60px;
+
+    animation:
+        checkoutDotFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes checkoutHeaderEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes checkoutOrderEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes checkoutSummaryEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+@keyframes checkoutItemEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes checkoutCircleFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(18px)
+            rotate(10deg);
+    }
+
+}
+
+
+@keyframes checkoutDotFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: relative;
+
+        top: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .checkout-page {
+        padding: 40px 5% 60px;
+    }
+
+    .checkout-header h1 {
+        font-size: 65px;
+
+        letter-spacing: -3px;
+    }
+
+    .checkout-order {
+        padding: 20px;
+    }
+
+    .checkout-item {
+        grid-template-columns:
+            50px
+            1fr
+            auto;
+
+        gap: 12px;
+    }
+
+    .checkout-food-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 20px;
+    }
+
+    .checkout-food-info h2 {
+        font-size: 19px;
+    }
+
+    .checkout-summary {
+        padding: 24px;
+    }
+
+}

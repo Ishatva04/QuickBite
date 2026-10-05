@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout
 from django.contrib.auth import authenticate
+from .models import CustomerProfile
 
 def signup(request):
     error = None
@@ -11,10 +12,13 @@ def signup(request):
         username = request.POST.get("username")
         next_url = request.POST.get("next")
         email = request.POST.get("email")
+        phone_number = request.POST.get("phone_number")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
         if not username:
             error = "Username is required"
+        elif not phone_number:
+            error = "Phone number is required"
 
         elif password != confirm_password:
             error = "Passwords do not match"
@@ -23,6 +27,11 @@ def signup(request):
             error = "Username already exists"
 
         else:
+            User.objects.create_user(
+                username=username,
+                email=email,
+                password=password
+            )
             User.objects.create_user(
                 username=username,
                 email=email,

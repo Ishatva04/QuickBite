@@ -1,42 +1,129 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/category_detail.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <h1>{{ category.name }}</h1>
+<section class="category-page">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Food</th>
-                <th>Price</th>
-                <th>Available</th>
-            </tr>
-        </thead>
+    <!-- =========================
+         CATEGORY HEADER
+    ========================== -->
 
-        <tbody>
-            {% for food in foods %}
-                <tr>
-                    <td>
-                        <a href="{% url 'food_detail' food.id %}">
-                            {{ food.name }}
-                        </a>
-                    </td>
+    <div class="category-header">
 
-                    <td>₹{{ food.price }}</td>
+        <p class="category-label">
+            QUICKBITE MENU
+        </p>
 
-                    <td>
-                        {% if food.is_available %}
+        <h1>
+            {{ category.name }}
+        </h1>
+
+        <p class="category-description">
+            Explore our freshly prepared dishes.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         FOOD GRID
+    ========================== -->
+
+    <div class="food-grid">
+
+        {% for food in foods %}
+
+            <div class="food-card">
+
+                <div class="food-card-top">
+
+                    <div class="food-icon">
+                        🍽️
+                    </div>
+
+                    {% if food.is_available %}
+
+                        <span class="availability available">
                             Available
-                            <a href="{% url 'add_to_cart' food.id %}">
-                                Add to Cart
-                            </a>
-                        {% else %}
+                        </span>
+
+                    {% else %}
+
+                        <span class="availability unavailable">
                             Not Available
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="food-content">
+
+                    <h2>
+                        {{ food.name }}
+                    </h2>
+
+                    <p class="food-price">
+                        ₹{{ food.price }}
+                    </p>
+
+                </div>
+
+
+                <div class="food-actions">
+
+                    <a
+                        href="{% url 'food_detail' food.id %}"
+                        class="view-food"
+                    >
+                        View Details
+                        <span>→</span>
+                    </a>
+
+
+                    {% if food.is_available %}
+
+                        <a
+                            href="{% url 'add_to_cart' food.id %}"
+                            class="add-cart"
+                        >
+                            Add to Cart
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="empty-category">
+
+                <div class="empty-icon">
+                    🍽️
+                </div>
+
+                <h2>
+                    No dishes available
+                </h2>
+
+                <p>
+                    There are currently no dishes in this category.
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}

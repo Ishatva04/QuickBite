@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from menu.models import Food
 from django.utils import timezone
+import uuid
 
 # Create your models here.
 class RestaurantTable(models.Model):
@@ -28,6 +29,11 @@ class Order(models.Model):
     estimated_preparation_time = models.PositiveIntegerField(default=15)
     preparing_started_at = models.DateTimeField(null=True,blank=True)
     status = models.CharField(max_length=20, choices=ORDER_STATUS, default="pending")
+
+    invoice_token = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False
+    )
 
     def __str__(self):
             return str(self.user)

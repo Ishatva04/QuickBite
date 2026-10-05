@@ -1,52 +1,231 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Your Cart</h1>
+<section class="cart-page">
 
-{% if foods %}
+    <!-- =========================
+         CART HEADER
+    ========================== -->
 
-    {% for item in foods %}
+    <div class="cart-header">
 
-        <div>
-            <h3>{{ item.food.name }}</h3>
+        <p class="cart-label">
+            QUICKBITE
+        </p>
 
-            <p>Price: ₹{{ item.food.price }}</p>
+        <h1>
+            YOUR CART
+        </h1>
 
-            <p>
-                Quantity:
+        <p class="cart-description">
+            Review your selected dishes before placing your order.
+        </p>
 
-                <a href="{% url 'decrease_quantity' item.food.id %}">
-                    -
+    </div>
+
+
+    {% if foods %}
+
+        <!-- =========================
+             CART CONTENT
+        ========================== -->
+
+        <div class="cart-layout">
+
+
+            <!-- =========================
+                 CART ITEMS
+            ========================== -->
+
+            <div class="cart-items">
+
+                {% for item in foods %}
+
+                    <div class="cart-item">
+
+                        <!-- Food Icon -->
+
+                        <div class="cart-food-icon">
+                            🍽️
+                        </div>
+
+
+                        <!-- Food Information -->
+
+                        <div class="cart-food-info">
+
+                            <h2>
+                                {{ item.food.name }}
+                            </h2>
+
+                            <p class="cart-food-price">
+                                ₹{{ item.food.price }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- Quantity -->
+
+                        <div class="cart-quantity">
+
+                            <span class="quantity-label">
+                                Quantity
+                            </span>
+
+                            <div class="quantity-controls">
+
+                                <a
+                                    href="{% url 'decrease_quantity' item.food.id %}"
+                                    class="quantity-button"
+                                >
+                                    −
+                                </a>
+
+                                <span class="quantity-number">
+                                    {{ item.quantity }}
+                                </span>
+
+                                <a
+                                    href="{% url 'increase_quantity' item.food.id %}"
+                                    class="quantity-button"
+                                >
+                                    +
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Subtotal -->
+
+                        <div class="cart-subtotal">
+
+                            <span class="subtotal-label">
+                                Subtotal
+                            </span>
+
+                            <strong>
+                                ₹{{ item.subtotal }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Remove -->
+
+                        <a
+                            href="{% url 'remove_from_cart' item.food.id %}"
+                            class="remove-item"
+                        >
+                            ×
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- =========================
+                 CART SUMMARY
+            ========================== -->
+
+            <div class="cart-summary">
+
+                <p class="summary-label">
+                    ORDER SUMMARY
+                </p>
+
+                <h2>
+                    Your Order
+                </h2>
+
+
+                <div class="summary-line">
+                    <span>
+                        Items
+                    </span>
+
+                    <span>
+                        {{ foods|length }}
+                    </span>
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        ₹{{ total }}
+                    </strong>
+
+                </div>
+
+
+                <a
+                    href="{% url 'checkout' %}"
+                    class="checkout-button"
+                >
+                    Proceed to Checkout
+                    <span>→</span>
                 </a>
 
-                {{ item.quantity }}
+            </div>
 
-                <a href="{% url 'increase_quantity' item.food.id %}">
-                    +
-                </a>
+        </div>
+
+
+    {% else %}
+
+        <!-- =========================
+             EMPTY CART
+        ========================== -->
+
+        <div class="empty-cart">
+
+            <div class="empty-cart-icon">
+                🛒
+            </div>
+
+            <p class="empty-cart-label">
+                NOTHING HERE YET
             </p>
 
-            <p>Subtotal: ₹{{ item.subtotal }}</p>
+            <h2>
+                Your cart is empty
+            </h2>
 
-            <a href="{% url 'remove_from_cart' item.food.id %}">
-                Remove
+            <p>
+                Add some delicious dishes from our menu.
+            </p>
+
+            <a
+                href="{% url 'menu' %}"
+                class="empty-cart-button"
+            >
+                Explore the Menu
+                <span>→</span>
             </a>
 
         </div>
 
-    {% endfor %}
+    {% endif %}
 
-    <h2>Total: ₹{{ total }}</h2>
-
-    <a href="{% url 'checkout' %}">
-        Proceed to Checkout
-    </a>
-
-{% else %}
-
-    <p>Your cart is empty.</p>
-
-{% endif %}
+</section>
 
 {% endblock %}

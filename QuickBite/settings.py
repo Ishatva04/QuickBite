@@ -18,6 +18,7 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +30,9 @@ SECRET_KEY = 'django-insecure-*y&0%g6sn=t1ej4^k2y@dxkx=ge!4v#7gp2k)pcp8^(zujrzic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost",
+                    "127.0.0.1",
+    "mandate-sharpener-wharf.ngrok-free.dev",]
 
 
 # Application definition
@@ -68,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "QuickBite.context_processors.quickbite_dashboard",
             ],
         },
     },
@@ -141,3 +145,6 @@ MEDIA_URL = "/media/"
 
 RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
+WHATSAPP_ACCESS_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN")
+WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID") 
+PUBLIC_BASE_URL = os.getenv("PUBLIC_BASE_URL")

@@ -1,17 +1,117 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_orders.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>My Orders</h1>
+<section class="orders-page">
 
-{% for order in orders %}
+    <!-- Page Header -->
+    <div class="orders-header">
 
-    <h2>Order #{{ order.id }}</h2>
-    <p>Status: {{ order.status }}</p>
-    <a href="{% url 'order_confirmation' order.id %}">
-        View Order
-    </a>
+        <p class="orders-label">
+            QUICKBITE
+        </p>
 
-{% endfor %}
+        <h1>
+            MY <span>ORDERS</span>
+        </h1>
+
+        <p class="orders-description">
+            Keep track of your recent orders and their current status.
+        </p>
+
+    </div>
+
+
+    <!-- Orders -->
+    <div class="orders-container">
+
+        {% for order in orders %}
+
+        <div class="order-card">
+
+            <!-- Left Side -->
+            <div class="order-main">
+
+                <div class="order-icon">
+                    🍽️
+                </div>
+
+                <div class="order-info">
+
+                    <p class="order-label">
+                        ORDER
+                    </p>
+
+                    <h2>
+                        #{{ order.id }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Status -->
+            <div class="order-status">
+
+                <p>
+                    STATUS
+                </p>
+
+                <span class="status-badge">
+                    {{ order.status|title }}
+                </span>
+
+            </div>
+
+
+            <!-- View Order -->
+            <a
+                href="{% url 'order_confirmation' order.id %}"
+                class="view-order"
+            >
+                View Order
+                <span>→</span>
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <!-- Empty Orders -->
+        <div class="empty-orders">
+
+            <div class="empty-icon">
+                🍽️
+            </div>
+
+            <h2>
+                No Orders Yet
+            </h2>
+
+            <p>
+                Your orders will appear here after you place an order.
+            </p>
+
+            <a
+                href="{% url 'menu' %}"
+                class="menu-button"
+            >
+                Explore the Menu
+                <span>→</span>
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}

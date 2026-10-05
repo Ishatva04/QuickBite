@@ -1,65 +1,259 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/confirmation.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Order Placed Successfully!</h1>
+<section class="confirmation-page">
 
-<h2>Order #{{ order.id }}</h2>
+    <!-- =========================
+         SUCCESS HEADER
+    ========================== -->
 
-<p>Status: {{ order.status|title }}</p>
+    <div class="confirmation-header">
 
-<h3>Order Status</h3>
+        <div class="success-icon">
+            ✓
+        </div>
 
-{% for status in statuses %}
+        <p class="confirmation-label">
+            QUICKBITE
+        </p>
 
-    {% if forloop.counter0 < current_index %}
-        <p>✓ {{ status|title }}</p>
+        <h1>
+            ORDER PLACED
+            <br>
+            <span>SUCCESSFULLY!</span>
+        </h1>
 
-    {% elif forloop.counter0 == current_index %}
-        <p>● {{ status|title }}</p>
-        
-        {% if order.status == "preparing" %}
+        <p class="confirmation-description">
+            Thank you for ordering with QuickBite.
+            Your order is being handled with care.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         ORDER INFORMATION
+    ========================== -->
+
+    <div class="confirmation-layout">
+
+
+        <!-- =========================
+             ORDER CARD
+        ========================== -->
+
+        <div class="order-info-card">
+
+            <div class="order-info-top">
+
+                <div>
+                    <p class="card-label">
+                        YOUR ORDER
+                    </p>
+
+                    <h2>
+                        Order #{{ order.id }}
+                    </h2>
+                </div>
+
+                <span class="order-status">
+                    {{ order.status|title }}
+                </span>
+
+            </div>
+
+
+            <!-- =========================
+                 STATUS TIMELINE
+            ========================== -->
+
+            <div class="status-section">
+
+                <p class="card-label">
+                    ORDER STATUS
+                </p>
+
+
+                <div class="status-timeline">
+
+                    {% for status in statuses %}
+
+                        <div
+                            class="
+                                status-item
+
+                                {% if forloop.counter0 < current_index %}
+                                    completed
+                                {% elif forloop.counter0 == current_index %}
+                                    active
+                                {% else %}
+                                    upcoming
+                                {% endif %}
+                            "
+                        >
+
+                            <div class="status-marker">
+
+                                {% if forloop.counter0 < current_index %}
+
+                                    ✓
+
+                                {% elif forloop.counter0 == current_index %}
+
+                                    ●
+
+                                {% else %}
+
+                                    ○
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="status-content">
+
+                                <h3>
+                                    {{ status|title }}
+                                </h3>
+
+
+                                {% if forloop.counter0 == current_index %}
+
+                                    {% if order.status == "preparing" %}
+
+                                        <div class="preparation-info">
+
+                                            <p>
+                                                Your order is being prepared.
+                                            </p>
+
+                                            <div class="time-details">
+
+                                                <div>
+                                                    <span>
+                                                        Preparation time
+                                                    </span>
+
+                                                    <strong>
+                                                        {{ order.estimated_preparation_time }}
+                                                        minutes
+                                                    </strong>
+                                                </div>
+
+
+                                                <div>
+                                                    <span>
+                                                        Started at
+                                                    </span>
+
+                                                    <strong>
+                                                        {{ order.preparing_started_at }}
+                                                    </strong>
+                                                </div>
+
+
+                                                <div>
+                                                    <span>
+                                                        Expected ready time
+                                                    </span>
+
+                                                    <strong>
+                                                        {{ expected_ready_time|date:"g:i A" }}
+                                                    </strong>
+                                                </div>
+
+                                            </div>
+
+
+                                            {% if is_late %}
+
+                                                <div class="late-message">
+                                                    Your order is taking a little
+                                                    longer than expected.
+                                                </div>
+
+                                            {% else %}
+
+                                                <div class="preparing-message">
+                                                    Your order is being prepared.
+                                                </div>
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    {% endif %}
+
+
+                                    {% if order.status == "ready" %}
+
+                                        <div class="status-message">
+                                            Your order is ready!
+                                        </div>
+
+                                    {% endif %}
+
+
+                                    {% if order.status == "completed" %}
+
+                                        <div class="status-message">
+                                            Order completed. Thank you for
+                                            ordering with QuickBite!
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             THANK YOU CARD
+        ========================== -->
+
+        <div class="thank-you-card">
+
+            <p class="thank-you-label">
+                QUICKBITE
+            </p>
+
+            <h2>
+                Good food
+                <br>
+                takes time.
+            </h2>
 
             <p>
-                Estimated preparation time:
-                {{ order.estimated_preparation_time }} minutes
+                We're preparing your order fresh
+                inside our restaurant.
             </p>
 
-            <p>
-                Preparation started at:
-                {{ order.preparing_started_at }}
-            </p>
-            <p>
-                Estimated ready time:
-                {{ expected_ready_time|date:"g:i A" }}
-            </p>
+            <div class="thank-you-symbol">
+                🍽️
+            </div>
 
-                {% if is_late %}
-            <p>
-                Your order is taking a little longer than expected.
-            </p>
-            {% else %}
-             <p>
-                Your order is being prepared.
-            </p>
-            {% endif %}
-            
-        {% endif %}
+        </div>
 
-        {% if order.status == "ready" %}
-            <p>Your order is ready!</p>
-        {% endif %}
+    </div>
 
-        {% if order.status == "completed" %}
-            <p>Order completed. Thank you for ordering with QuickBite!</p>
-        {% endif %}
-
-
-    {% else %}
-        <p>○ {{ status|title }}</p>
-
-    {% endif %}
-
-{% endfor %}
+</section>
 
 {% endblock %}

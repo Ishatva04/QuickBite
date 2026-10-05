@@ -1,0 +1,630 @@
+/* =========================================================
+   QUICKBITE - MY ORDERS
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.orders-page {
+    position: relative;
+
+    min-height: calc(100vh - 90px);
+
+    padding: 70px 7% 100px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DECORATIVE CIRCLE
+========================================================= */
+
+.orders-page::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border: 2px solid rgba(246, 193, 93, 0.45);
+
+    border-radius: 50%;
+
+    right: -100px;
+    top: 170px;
+
+    animation: ordersCircle 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   DECORATIVE DOT
+========================================================= */
+
+.orders-page::after {
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    background: #ed672f;
+
+    border-radius: 50%;
+
+    left: 4%;
+    bottom: 70px;
+
+    animation: ordersDot 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.orders-header {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 800px;
+
+    margin-bottom: 50px;
+
+    animation: ordersHeaderEnter 0.8s ease forwards;
+}
+
+
+.orders-label {
+    margin-bottom: 12px;
+
+    color: #ed672f;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+}
+
+
+.orders-header h1 {
+    margin: 0;
+
+    color: #5a2119;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(65px, 8vw, 110px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+}
+
+
+.orders-header h1 span {
+    color: #ed672f;
+}
+
+
+.orders-description {
+    max-width: 520px;
+
+    margin-top: 25px;
+
+    color: #70453d;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ORDERS CONTAINER
+========================================================= */
+
+.orders-container {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   ORDER CARD
+========================================================= */
+
+.order-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 0.8fr 0.7fr;
+
+    align-items: center;
+
+    gap: 30px;
+
+    min-height: 125px;
+
+    margin-bottom: 18px;
+
+    padding: 25px 30px;
+
+    background: #fff8ec;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 40px rgba(91, 47, 29, 0.08);
+
+    overflow: hidden;
+
+    animation: orderCardEnter 0.7s ease both;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.order-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 25px 50px rgba(91, 47, 29, 0.13);
+}
+
+
+/* =========================================================
+   CARD DECORATION
+========================================================= */
+
+.order-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    right: -35px;
+    top: -35px;
+
+    background: #f9dca2;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   ORDER MAIN
+========================================================= */
+
+.order-main {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.order-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #ed672f;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.order-card:hover .order-icon {
+    transform: rotate(-8deg) scale(1.08);
+
+    box-shadow:
+        0 8px 20px rgba(237, 103, 47, 0.25);
+}
+
+
+/* =========================================================
+   ORDER INFO
+========================================================= */
+
+.order-info {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.order-info .order-label {
+    margin: 0 0 5px;
+
+    color: #a07b70;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.order-info h2 {
+    margin: 0;
+
+    color: #5a2119;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.order-status {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.order-status p {
+    margin: 0 0 8px;
+
+    color: #a07b70;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.status-badge {
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    background: #f6c15d;
+
+    color: #5a2119;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   VIEW ORDER
+========================================================= */
+
+.view-order {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    color: #ed672f;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    transition:
+        gap 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.view-order span {
+    font-size: 20px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.view-order:hover {
+    gap: 15px;
+
+    color: #5a2119;
+}
+
+
+.view-order:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   EMPTY ORDERS
+========================================================= */
+
+.empty-orders {
+    padding: 70px 30px;
+
+    background: #fff8ec;
+
+    border-radius: 28px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 45px rgba(91, 47, 29, 0.08);
+
+    animation: orderCardEnter 0.8s ease forwards;
+}
+
+
+.empty-icon {
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #ed672f;
+
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+
+.empty-orders h2 {
+    margin: 0;
+
+    color: #5a2119;
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+}
+
+
+.empty-orders p {
+    margin: 15px auto 25px;
+
+    max-width: 450px;
+
+    color: #70453d;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.menu-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 22px;
+
+    background: #ed672f;
+
+    color: #fff8ec;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        gap 0.3s ease;
+}
+
+
+.menu-button span {
+    font-size: 20px;
+}
+
+
+.menu-button:hover {
+    transform: translateY(-3px);
+
+    background: #5a2119;
+
+    gap: 17px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes ordersHeaderEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes orderCardEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes ordersCircle {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+
+}
+
+
+@keyframes ordersDot {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .orders-page {
+        padding: 55px 5% 80px;
+    }
+
+
+    .orders-header h1 {
+        font-size: 70px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .order-card {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 20px;
+    }
+
+
+    .view-order {
+        justify-content: flex-start;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .orders-page {
+        padding: 40px 20px 70px;
+    }
+
+
+    .orders-header h1 {
+        font-size: 52px;
+
+        line-height: 0.95;
+    }
+
+
+    .order-card {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+        padding: 25px;
+    }
+
+
+    .order-status {
+        width: 100%;
+    }
+
+
+    .view-order {
+        justify-content: flex-start;
+    }
+
+
+    .empty-orders {
+        padding: 50px 20px;
+    }
+
+}

@@ -1,14 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere, debitis. Placeat exercitationem temporibus quibusdam asperiores laboriosam distinctio repellat, culpa, quia eveniet tempore ut repellendus amet adipisci totam aut earum iste.
-        
-    </p>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-page">
+
+    <!-- HERO -->
+
+    <div class="about-hero">
+
+        <div class="about-hero-content">
+
+            <p class="about-label">
+                ABOUT QUICKBITE
+            </p>
+
+            <h1>
+                GOOD FOOD
+                <br>
+                <span>GOOD MOMENTS.</span>
+            </h1>
+
+            <p class="about-intro">
+                QuickBite is a restaurant ordering experience
+                designed to make enjoying great food simple,
+                comfortable and memorable.
+            </p>
+
+        </div>
+
+
+        <!-- FOOD ILLUSTRATION -->
+
+        <div class="about-food">
+
+            <div class="about-ring ring-one"></div>
+            <div class="about-ring ring-two"></div>
+
+            <span class="about-dot dot-one"></span>
+            <span class="about-dot dot-two"></span>
+            <span class="about-dot dot-three"></span>
+
+            <div class="food-bowl">
+
+                <div class="bowl-rim"></div>
+
+                <div class="bowl-body">
+
+                    <span class="food-piece piece-one"></span>
+                    <span class="food-piece piece-two"></span>
+                    <span class="food-piece piece-three"></span>
+
+                    <span class="noodle noodle-one"></span>
+                    <span class="noodle noodle-two"></span>
+                    <span class="noodle noodle-three"></span>
+
+                </div>
+
+            </div>
+
+            <div class="about-steam steam-one"></div>
+            <div class="about-steam steam-two"></div>
+            <div class="about-steam steam-three"></div>
+
+            <div class="about-fork"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- OUR STORY -->
+
+    <section class="about-story">
+
+        <div class="story-heading">
+
+            <p class="section-label">
+                OUR STORY
+            </p>
+
+            <h2>
+                More than just
+                <span>a meal.</span>
+            </h2>
+
+        </div>
+
+        <div class="story-text">
+
+            <p>
+                QuickBite was created with one simple idea:
+                great food should be easy to enjoy.
+            </p>
+
+            <p>
+                From exploring the menu to selecting your
+                favorite dishes and placing your order,
+                QuickBite brings the restaurant ordering
+                experience together in one simple place.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE -->
+
+    <section class="about-experience">
+
+        <div class="experience-card">
+
+            <div class="experience-number">
+                01
+            </div>
+
+            <div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <p>
+                    Browse our restaurant menu and discover
+                    dishes prepared for every kind of craving.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="experience-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    Choose
+                </h3>
+
+                <p>
+                    Select your favorite dishes, adjust
+                    quantities and build your perfect order.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="experience-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Enjoy
+                </h3>
+
+                <p>
+                    Complete your order and enjoy your meal
+                    inside our restaurant.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL MESSAGE -->
+
+    <section class="about-final">
+
+        <p>
+            MADE WITH CARE
+        </p>
+
+        <h2>
+            Your table.
+            <br>
+            Your food.
+            <br>
+            <span>Your moment.</span>
+        </h2>
+
+    </section>
+
+</section>
+
+{% endblock %}

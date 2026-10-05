@@ -1,0 +1,826 @@
+/* =========================================================
+   QUICKBITE - ABOUT PAGE
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.about-page {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.about-hero {
+    min-height: 570px;
+
+    padding: 80px 7% 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+
+.about-hero-content {
+    width: 52%;
+
+    animation:
+        aboutContentIn 0.9s ease forwards;
+}
+
+
+@keyframes aboutContentIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.about-label,
+.section-label,
+.about-final > p {
+    color: #f15f32;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.about-hero h1 {
+    margin-top: 18px;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(58px, 6.5vw, 94px);
+
+    line-height: 0.91;
+
+    letter-spacing: -4px;
+
+    color: #572018;
+}
+
+
+.about-hero h1 span {
+    color: #f15f32;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.about-intro {
+    max-width: 540px;
+
+    margin-top: 35px;
+
+    color: #70453d;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FOOD AREA
+========================================================= */
+
+.about-food {
+    width: 430px;
+    height: 430px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        foodAppear 1s ease forwards;
+}
+
+
+@keyframes foodAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.7) rotate(-10deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+
+/* =========================================================
+   RINGS
+========================================================= */
+
+.about-ring {
+    position: absolute;
+
+    border: 2px solid #f4c15d;
+
+    border-radius: 50%;
+}
+
+
+.ring-one {
+    width: 390px;
+    height: 390px;
+
+    animation:
+        ringRotate 18s linear infinite;
+}
+
+
+.ring-two {
+    width: 310px;
+    height: 310px;
+
+    border-color: rgba(87, 32, 24, 0.16);
+
+    animation:
+        ringRotateReverse 14s linear infinite;
+}
+
+
+@keyframes ringRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes ringRotateReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
+/* =========================================================
+   FOOD BOWL
+========================================================= */
+
+.food-bowl {
+    width: 220px;
+    height: 180px;
+
+    position: relative;
+
+    z-index: 3;
+
+    animation:
+        bowlFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes bowlFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* bowl rim */
+
+.bowl-rim {
+    position: absolute;
+
+    width: 220px;
+    height: 65px;
+
+    top: 35px;
+    left: 0;
+
+    border-radius: 50%;
+
+    background: #fff4df;
+
+    z-index: 2;
+}
+
+
+.bowl-rim::after {
+    content: "";
+
+    position: absolute;
+
+    width: 185px;
+    height: 42px;
+
+    left: 18px;
+    top: 9px;
+
+    border-radius: 50%;
+
+    background: #f15f32;
+}
+
+
+/* bowl body */
+
+.bowl-body {
+    position: absolute;
+
+    width: 190px;
+    height: 115px;
+
+    left: 15px;
+    top: 65px;
+
+    background: #fff4df;
+
+    border-radius:
+        0 0 90px 90px;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   NOODLES
+========================================================= */
+
+.noodle {
+    position: absolute;
+
+    width: 8px;
+    height: 55px;
+
+    background: #f4c15d;
+
+    border-radius: 10px;
+
+    z-index: 4;
+
+    top: 38px;
+}
+
+
+.noodle-one {
+    left: 68px;
+
+    transform: rotate(-12deg);
+
+    animation:
+        noodleMove 2s ease-in-out infinite;
+}
+
+
+.noodle-two {
+    left: 95px;
+
+    transform: rotate(4deg);
+
+    animation:
+        noodleMove 2s ease-in-out 0.3s infinite;
+}
+
+
+.noodle-three {
+    left: 123px;
+
+    transform: rotate(13deg);
+
+    animation:
+        noodleMove 2s ease-in-out 0.6s infinite;
+}
+
+
+@keyframes noodleMove {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(-5deg);
+    }
+}
+
+
+/* =========================================================
+   FOOD PIECES
+========================================================= */
+
+.food-piece {
+    position: absolute;
+
+    width: 14px;
+    height: 10px;
+
+    background: #ed672f;
+
+    border-radius: 50%;
+
+    z-index: 5;
+}
+
+
+.piece-one {
+    left: 48px;
+    top: 22px;
+
+    transform: rotate(20deg);
+}
+
+
+.piece-two {
+    left: 145px;
+    top: 20px;
+
+    transform: rotate(-25deg);
+}
+
+
+.piece-three {
+    left: 112px;
+    top: 12px;
+
+    background: #f4c15d;
+}
+
+
+/* =========================================================
+   STEAM
+========================================================= */
+
+.about-steam {
+    position: absolute;
+
+    width: 8px;
+    height: 48px;
+
+    border-left: 4px solid #fff4df;
+
+    border-radius: 50%;
+
+    z-index: 5;
+
+    opacity: 0;
+}
+
+
+.about-steam.steam-one {
+    left: 185px;
+    top: 105px;
+
+    animation:
+        aboutSteam 2.8s ease-in-out infinite;
+}
+
+
+.about-steam.steam-two {
+    left: 215px;
+    top: 105px;
+
+    animation:
+        aboutSteam 2.8s ease-in-out 0.6s infinite;
+}
+
+
+.about-steam.steam-three {
+    left: 245px;
+    top: 110px;
+
+    animation:
+        aboutSteam 2.8s ease-in-out 1.2s infinite;
+}
+
+
+@keyframes aboutSteam {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scaleY(0.7);
+    }
+
+    40% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-25px)
+            scaleY(1.1);
+    }
+}
+
+
+/* =========================================================
+   FORK
+========================================================= */
+
+.about-fork {
+    position: absolute;
+
+    width: 7px;
+    height: 125px;
+
+    background: #572018;
+
+    border-radius: 8px;
+
+    top: 145px;
+    right: 75px;
+
+    transform:
+        rotate(58deg);
+
+    z-index: 6;
+
+    animation:
+        forkFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes forkFloat {
+
+    0%,
+    100% {
+        transform:
+            rotate(58deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            rotate(53deg)
+            translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   DECORATIVE DOTS
+========================================================= */
+
+.about-dot {
+    position: absolute;
+
+    border-radius: 50%;
+
+    z-index: 4;
+}
+
+
+.dot-one {
+    width: 13px;
+    height: 13px;
+
+    background: #f15f32;
+
+    top: 80px;
+    right: 20px;
+
+    animation:
+        dotFloat 4s ease-in-out infinite;
+}
+
+
+.dot-two {
+    width: 9px;
+    height: 9px;
+
+    background: #f4c15d;
+
+    bottom: 60px;
+    left: 25px;
+
+    animation:
+        dotFloat 5s ease-in-out 1s infinite;
+}
+
+
+.dot-three {
+    width: 7px;
+    height: 7px;
+
+    background: #572018;
+
+    top: 50px;
+    left: 50px;
+
+    animation:
+        dotFloat 4.5s ease-in-out 0.5s infinite;
+}
+
+
+@keyframes dotFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.about-story {
+    padding: 100px 7%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    background: #fff7e8;
+}
+
+
+.story-heading h2 {
+    margin-top: 20px;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(45px, 5vw, 70px);
+
+    line-height: 0.95;
+
+    color: #572018;
+}
+
+
+.story-heading h2 span {
+    color: #f15f32;
+}
+
+
+.story-text {
+    max-width: 550px;
+
+    padding-top: 25px;
+}
+
+
+.story-text p {
+    margin-bottom: 25px;
+
+    color: #70453d;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.about-experience {
+    padding: 80px 7%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.experience-card {
+    padding: 35px;
+
+    min-height: 230px;
+
+    background: #fff4df;
+
+    border-radius: 28px;
+
+    border: 1px solid transparent;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+.experience-card:hover {
+    transform:
+        translateY(-10px);
+
+    border-color: #f15f32;
+
+    box-shadow:
+        0 20px 40px rgba(87, 32, 24, 0.10);
+}
+
+
+.experience-number {
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    color: #f15f32;
+}
+
+
+.experience-card h3 {
+    margin-bottom: 10px;
+
+    font-family: Georgia, serif;
+
+    font-size: 27px;
+
+    color: #572018;
+}
+
+
+.experience-card p {
+    color: #70453d;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.about-final {
+    padding: 110px 7%;
+
+    text-align: center;
+
+    background: #572018;
+
+    color: #fff4df;
+}
+
+
+.about-final > p {
+    color: #f4c15d;
+}
+
+
+.about-final h2 {
+    margin-top: 20px;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: 0.95;
+}
+
+
+.about-final h2 span {
+    color: #f15f32;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-hero {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 60px;
+    }
+
+
+    .about-hero-content {
+        width: 100%;
+    }
+
+
+    .about-intro {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .about-food {
+        margin-top: 50px;
+
+        transform: scale(0.85);
+    }
+
+
+    .about-story {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .about-experience {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .about-hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+
+    .about-hero h1 {
+        font-size: 52px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .about-food {
+        width: 350px;
+        height: 350px;
+
+        transform: scale(0.75);
+    }
+
+
+    .about-ring.ring-one {
+        width: 350px;
+        height: 350px;
+    }
+
+
+    .about-story,
+    .about-experience {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+}

@@ -1,38 +1,257 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<h1>Sign Up</h1>
-{% if error %}
-    <p>{{ error }}</p>
-{% endif %}
+<section class="signup-page">
 
-<form method="POST">
+    <!-- LEFT FOOD SIDE -->
 
-    {% csrf_token %}
+    <div class="signup-food">
 
-    {% if next %}
-        <input type="hidden" name="next" value="{{ next }}">
-    {% endif %}
+        <div class="food-glow"></div>
 
-    <label>Username</label>
-    <input type="text" name="username">
+        <div class="floating-shape shape-one"></div>
+        <div class="floating-shape shape-two"></div>
 
-    <label>Email</label>
-    <input type="email" name="email">
+        <span class="food-spark spark-one">✦</span>
+        <span class="food-spark spark-two">✦</span>
+        <span class="food-spark spark-three">•</span>
 
-    <label>Password</label>
-    <input type="password" name="password">
+        <div class="restaurant-food">
 
-    <label>Confirm Password</label>
-    <input type="password" name="confirm_password">
+            <div class="steam steam-one"></div>
+            <div class="steam steam-two"></div>
+            <div class="steam steam-three"></div>
 
-    <button type="submit">Sign Up</button>
-    <p>
-        Already have a account?
-        <a href="{% url 'login' %}?next={{ next }}">login</a>
-    </p>
+            <div class="plate">
 
-</form>
+                <div class="plate-food">
+
+                    <div class="food-line line-one"></div>
+                    <div class="food-line line-two"></div>
+                    <div class="food-line line-three"></div>
+                    <div class="food-line line-four"></div>
+
+                    <span class="food-dot dot-one"></span>
+                    <span class="food-dot dot-two"></span>
+                    <span class="food-dot dot-three"></span>
+
+                    <span class="green-leaf leaf-one"></span>
+                    <span class="green-leaf leaf-two"></span>
+
+                </div>
+
+            </div>
+
+            <div class="fork"></div>
+            <div class="knife"></div>
+
+        </div>
+
+        <div class="food-text">
+
+            <p>
+                YOUR TABLE IS WAITING
+            </p>
+
+            <h2>
+                Come hungry.
+            </h2>
+
+            <span>
+                Leave with a smile.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIGNUP SIDE -->
+
+    <div class="signup-content">
+
+        <p class="signup-label">
+            JOIN QUICKBITE
+        </p>
+
+        <h1>
+            CREATE
+            <br>
+            YOUR
+            <br>
+            <span>ACCOUNT.</span>
+        </h1>
+
+        <p class="signup-description">
+            Create your account and enjoy your
+            favorite dishes at QuickBite.
+        </p>
+
+
+        {% if error %}
+
+            <div class="signup-error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST" class="signup-form">
+
+            {% csrf_token %}
+
+            {% if next %}
+
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{ next }}"
+                >
+
+            {% endif %}
+
+
+            <div class="input-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+    <label for="phone_number">
+        Phone Number
+    </label>
+
+    <div class="input-wrapper">
+
+        <span class="input-icon">
+            📱
+        </span>
+
+        <input
+            id="phone_number"
+            type="tel"
+            name="phone_number"
+            placeholder="Enter your WhatsApp number"
+            autocomplete="tel"
+        >
+
+    </div>
+
+</div>
+            <div class="password-row">
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Create password"
+                            autocomplete="new-password"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ✓
+                        </span>
+
+                        <input
+                            id="confirm_password"
+                            type="password"
+                            name="confirm_password"
+                            placeholder="Confirm password"
+                            autocomplete="new-password"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="signup-button"
+            >
+
+                <span>Create Account</span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}?next={{ next }}">
+
+                    Login
+
+                    <span>→</span>
+
+                </a>
+
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
 
 {% endblock %}

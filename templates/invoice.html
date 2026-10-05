@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="invoice-page">
+
+    <!-- Page Heading -->
+    <div class="invoice-header">
+
+        <p class="invoice-label">
+            QUICKBITE
+        </p>
+
+        <h1>
+            YOUR
+            <span>INVOICE</span>
+        </h1>
+
+        <p class="invoice-description">
+            Thank you for dining with us.
+            Here is your order summary.
+        </p>
+
+    </div>
+
+
+    <!-- Invoice Card -->
+    <div class="invoice-card">
+
+        <!-- Invoice Top -->
+        <div class="invoice-top">
+
+            <div>
+                <p class="small-label">
+                    QUICKBITE RESTAURANT
+                </p>
+
+                <h2>
+                    Invoice
+                </h2>
+            </div>
+
+            <div class="invoice-meta">
+
+                <p>
+                    <span>Order</span>
+                    #{{ order.id }}
+                </p>
+
+                <p>
+                    <span>Customer</span>
+                    {{ order.user.username }}
+                </p>
+
+                <p>
+                    <span>Date</span>
+                    {{ order.created_at }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Divider -->
+        <div class="invoice-divider"></div>
+
+
+        <!-- Items -->
+        <div class="invoice-items">
+
+            <div class="items-heading">
+
+                <span>ITEM</span>
+                <span>DETAILS</span>
+                <span>SUBTOTAL</span>
+
+            </div>
+
+
+            {% for item in items %}
+
+            <div class="invoice-item">
+
+                <div class="item-name">
+                    <div class="item-icon">
+                        🍽️
+                    </div>
+
+                    <h3>
+                        {{ item.food.name }}
+                    </h3>
+                </div>
+
+
+                <div class="item-details">
+
+                    <p>
+                        ₹{{ item.price }}
+                        ×
+                        {{ item.quantity }}
+                    </p>
+
+                </div>
+
+
+                <div class="item-subtotal">
+
+                    <p>
+                        ₹{{ item.subtotal }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Total Section -->
+        <div class="invoice-total-section">
+
+            <div class="payment-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <p class="payment-label">
+                        PAYMENT
+                    </p>
+
+                    <p class="payment-success">
+                        Successful
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="invoice-total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong>
+                    ₹{{ order.total }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="invoice-footer">
+
+            <p>
+                Thank you for ordering with QuickBite.
+            </p>
+
+            <span>
+                Good food. Great moments.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

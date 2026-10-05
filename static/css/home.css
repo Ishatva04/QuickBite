@@ -1,0 +1,576 @@
+/* =========================================================
+   QUICKBITE - HOME PAGE
+   Hero section + Food illustration + Animations
+========================================================= */
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+    min-height: calc(100vh - 90px);
+
+    padding: 50px 7% 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    width: 50%;
+    max-width: 620px;
+
+    position: relative;
+    z-index: 2;
+
+    animation: heroContentEnter 1s ease-out both;
+}
+
+
+/* Small orange heading */
+
+.hero-small-text {
+    color: #ed672f;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+
+/* Main heading */
+
+.hero h1 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(55px, 6vw, 92px);
+
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+
+    color: #4b1f18;
+
+    margin-bottom: 30px;
+}
+
+
+/* Description */
+
+.hero-description {
+    max-width: 480px;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: #70463c;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   EXPLORE MENU BUTTON
+========================================================= */
+
+.hero-button {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 15px;
+
+    padding: 17px 27px;
+
+    background: #ed672f;
+    color: white;
+
+    border-radius: 50px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px rgba(180, 73, 20, 0.2);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* Arrow */
+
+.hero-button span {
+    font-size: 22px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* Button hover */
+
+.hero-button:hover {
+    transform: translateY(-5px);
+
+    background: #d95714;
+
+    box-shadow:
+        0 15px 30px rgba(180, 73, 20, 0.3);
+}
+
+
+.hero-button:hover span {
+    transform: translateX(6px);
+}
+
+
+/* =========================================================
+   HERO IMAGE AREA
+========================================================= */
+
+.hero-image {
+    width: 45%;
+
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    animation:
+        heroImageEnter 1.2s ease-out both;
+
+    animation-delay: 0.2s;
+}
+
+
+/* =========================================================
+   FOOD CIRCLE
+========================================================= */
+
+.food-placeholder {
+    width: 440px;
+    height: 440px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #f5b15f 0%,
+            #e87525 35%,
+            #c84418 70%,
+            #8b2e19 100%
+        );
+
+    border: 18px solid #3b2925;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 25px 50px rgba(75, 31, 24, 0.25);
+
+    transform: rotate(-5deg);
+
+    position: relative;
+
+    animation:
+        foodFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ROTATING DECORATIVE RING
+========================================================= */
+
+.food-placeholder::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -35px;
+
+    border: 3px dashed #ed672f;
+
+    border-radius: 50%;
+
+    opacity: 0.7;
+
+    animation:
+        rotateRing 18s linear infinite;
+}
+
+
+/* =========================================================
+   SPARKLE
+========================================================= */
+
+.food-placeholder::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: -75px;
+    top: 40px;
+
+    font-size: 65px;
+
+    color: #f5a623;
+
+    animation:
+        sparkle 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   FOOD SVG
+========================================================= */
+
+.food-svg {
+    width: 290px;
+    height: 290px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   STEAM
+========================================================= */
+
+.steam {
+    transform-origin: center;
+
+    animation:
+        steamMove 2.5s ease-in-out infinite;
+}
+
+
+.steam-two {
+    animation-delay: 0.4s;
+}
+
+
+.steam-three {
+    animation-delay: 0.8s;
+}
+
+
+/* =========================================================
+   DECORATIVE HERO ELEMENTS
+========================================================= */
+
+.hero::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 17%;
+    left: 4%;
+
+    font-size: 45px;
+
+    color: #f5a623;
+
+    animation:
+        sparkle 2.5s ease-in-out infinite;
+}
+
+
+.hero::after {
+    content: "•  •  •";
+
+    position: absolute;
+
+    bottom: 12%;
+    right: 45%;
+
+    color: #ed672f;
+
+    font-size: 22px;
+
+    letter-spacing: 8px;
+
+    transform: rotate(-15deg);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+
+/* Hero text enters from left */
+
+@keyframes heroContentEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+/* Food enters from right */
+
+@keyframes heroImageEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(60px)
+            scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+}
+
+
+/* Food gently floats */
+
+@keyframes foodFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-15px)
+            rotate(-2deg);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+}
+
+
+/* Ring continuously rotates */
+
+@keyframes rotateRing {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+/* Sparkle pulses */
+
+@keyframes sparkle {
+
+    0% {
+        transform:
+            scale(1)
+            rotate(0deg);
+
+        opacity: 0.6;
+    }
+
+    50% {
+        transform:
+            scale(1.2)
+            rotate(15deg);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0deg);
+
+        opacity: 0.6;
+    }
+
+}
+
+
+/* Steam moves upward */
+
+@keyframes steamMove {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-25px);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        padding:
+            40px
+            5%
+            70px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .hero-content {
+        width: 100%;
+    }
+
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-image {
+        width: 100%;
+
+        min-height: 400px;
+
+        margin-top: 50px;
+    }
+
+
+    .food-placeholder {
+        width: 330px;
+        height: 330px;
+    }
+
+
+    .food-svg {
+        width: 220px;
+        height: 220px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        min-height: auto;
+
+        padding:
+            45px
+            6%
+            70px;
+    }
+
+
+    .hero-small-text {
+        font-size: 12px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+
+    .food-placeholder {
+        width: 270px;
+        height: 270px;
+
+        border-width: 12px;
+    }
+
+
+    .food-svg {
+        width: 190px;
+        height: 190px;
+    }
+
+
+    .food-placeholder::after {
+        right: -45px;
+
+        font-size: 45px;
+    }
+
+}

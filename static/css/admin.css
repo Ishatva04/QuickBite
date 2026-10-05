@@ -1,0 +1,1806 @@
+/* =========================================================
+   QUICKBITE ADMIN
+   Same visual language as customer website
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+:root {
+    --qb-cream: #fff2d2;
+    --qb-light: #fff7e8;
+    --qb-card: #fffaf0;
+
+    --qb-brown: #572018;
+    --qb-dark-brown: #4b1f18;
+    --qb-muted-brown: #70453d;
+
+    --qb-orange: #f15f32;
+    --qb-orange-dark: #e85126;
+
+    --qb-yellow: #f4c15d;
+
+    --qb-border: #ead8bb;
+
+    --qb-shadow:
+        0 12px 30px rgba(87, 32, 24, 0.08);
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body {
+    background: var(--qb-cream) !important;
+}
+
+body {
+    color: var(--qb-brown) !important;
+
+    font-family:
+        Arial,
+        sans-serif !important;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+#header {
+    background: var(--qb-cream) !important;
+
+    color: var(--qb-brown) !important;
+
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.12);
+
+    padding: 18px 35px !important;
+
+    min-height: 70px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   QUICKBITE BRAND
+   ========================================================= */
+
+.qb-admin-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+.qb-admin-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--qb-brown) !important;
+
+    text-decoration: none !important;
+}
+
+.qb-admin-name {
+    font-family: Georgia, serif;
+
+    font-size: 31px;
+
+    font-weight: bold;
+
+    color: var(--qb-brown);
+}
+
+.qb-admin-label {
+    color: var(--qb-orange);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    padding-left: 16px;
+
+    border-left:
+        1px solid var(--qb-border);
+}
+
+
+/* =========================================================
+   ADMIN FOOD LOGO
+   ========================================================= */
+
+.qb-admin-food {
+    width: 36px;
+
+    height: 34px;
+
+    position: relative;
+
+    display: inline-block;
+}
+
+.qb-admin-plate {
+    position: absolute;
+
+    width: 29px;
+
+    height: 10px;
+
+    left: 2px;
+
+    bottom: 5px;
+
+    background: var(--qb-orange);
+
+    border-radius: 50%;
+
+    transition:
+        transform 0.35s ease;
+}
+
+.qb-admin-plate::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+
+    height: 5px;
+
+    left: 5px;
+
+    top: 2px;
+
+    background: var(--qb-yellow);
+
+    border-radius: 50%;
+}
+
+.qb-admin-food-dot {
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    left: 12px;
+
+    bottom: 11px;
+
+    background: var(--qb-brown);
+
+    border-radius: 50%;
+
+    box-shadow:
+        8px 0 0 var(--qb-brown);
+}
+
+.qb-admin-steam {
+    position: absolute;
+
+    width: 5px;
+
+    height: 13px;
+
+    border-left:
+        2px solid var(--qb-orange);
+
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+.qb-admin-steam.steam-one {
+    left: 10px;
+
+    bottom: 19px;
+
+    animation:
+        qbAdminSteam 2.5s ease-in-out infinite;
+}
+
+.qb-admin-steam.steam-two {
+    left: 20px;
+
+    bottom: 19px;
+
+    animation:
+        qbAdminSteam 2.5s ease-in-out 0.7s infinite;
+}
+
+.qb-admin-logo:hover .qb-admin-plate {
+    transform:
+        rotate(-8deg)
+        translateY(-2px);
+}
+
+@keyframes qbAdminSteam {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(5px);
+    }
+
+    35% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+    }
+}
+
+
+/* =========================================================
+   HEADER LINKS
+   ========================================================= */
+
+#user-tools {
+    color: var(--qb-muted-brown) !important;
+
+    font-size: 12px !important;
+
+    display: flex;
+
+    align-items: center;
+}
+
+#user-tools a {
+    color: var(--qb-brown) !important;
+
+    border-bottom:
+        1px solid transparent !important;
+
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#user-tools a:hover {
+    color: var(--qb-orange) !important;
+
+    border-color:
+        var(--qb-orange) !important;
+}
+
+
+/* =========================================================
+   DJANGO LIGHT / DARK THEME CONTROLLER
+   IMPORTANT:
+   Do NOT control the internal SVG display states.
+   Django itself decides which icon is visible.
+   ========================================================= */
+
+#header .theme-toggle {
+    width: 28px !important;
+
+    height: 28px !important;
+
+    min-width: 28px !important;
+
+    min-height: 28px !important;
+
+    margin: 0 0 0 8px !important;
+
+    padding: 0 !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    background: transparent !important;
+
+    background-color: transparent !important;
+
+    background-image: none !important;
+
+    border: none !important;
+
+    border-radius: 50% !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    color: var(--qb-brown) !important;
+
+    cursor: pointer !important;
+
+    transform: none;
+}
+
+
+/* Hover */
+
+#header .theme-toggle:hover {
+    background: transparent !important;
+
+    background-color: transparent !important;
+
+    background-image: none !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    color: var(--qb-orange) !important;
+
+    transform: scale(1.08);
+}
+
+
+/* Focus / active */
+
+#header .theme-toggle:focus,
+#header .theme-toggle:focus-visible,
+#header .theme-toggle:active {
+    background: transparent !important;
+
+    background-color: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+}
+
+
+/*
+   Only size/style the SVG.
+   DO NOT use display:none.
+   DO NOT force the three icon wrappers to display:block.
+*/
+
+#header .theme-toggle svg {
+    width: 19px !important;
+
+    height: 19px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    background-color: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    color: currentColor !important;
+}
+
+
+/*
+   Do not interfere with Django's SVG paths.
+   This is intentionally NOT setting fill:none.
+*/
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+#content {
+    padding:
+        35px !important;
+
+    max-width:
+        1450px;
+
+    margin:
+        0 auto;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+#content h1,
+#content h2,
+#content h3,
+#content h4 {
+    color: var(--qb-brown) !important;
+}
+
+#content h1 {
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+#content a {
+    color: var(--qb-orange);
+
+    transition:
+        color 0.25s ease;
+}
+
+#content a:hover {
+    color:
+        var(--qb-orange-dark);
+}
+
+
+/* =========================================================
+   MODULES / APP SECTIONS
+   ========================================================= */
+
+.module,
+.inline-group {
+    background:
+        var(--qb-card) !important;
+
+    border:
+        1px solid var(--qb-border) !important;
+
+    border-radius:
+        18px !important;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        var(--qb-shadow);
+
+    margin-bottom:
+        25px !important;
+}
+
+
+/* =========================================================
+   MODULE HEADERS
+   ========================================================= */
+
+.module caption,
+.module h2,
+.inline-group h2 {
+    background:
+        var(--qb-brown) !important;
+
+    color:
+        var(--qb-light) !important;
+
+    font-size:
+        13px !important;
+
+    font-weight:
+        700 !important;
+
+    letter-spacing:
+        1px;
+
+    padding:
+        13px 16px !important;
+}
+
+
+/* =========================================================
+   TABLE ROWS
+   ========================================================= */
+
+.module table {
+    width: 100%;
+}
+
+.module th {
+    color:
+        var(--qb-brown) !important;
+}
+
+.module td {
+    color:
+        var(--qb-muted-brown) !important;
+
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.07) !important;
+}
+
+.module tr {
+    transition:
+        background 0.2s ease;
+}
+
+.module tr:hover {
+    background:
+        #fff2d2 !important;
+}
+
+
+/* =========================================================
+   ADD / CHANGE LINKS
+   ========================================================= */
+
+.addlink,
+.changelink,
+.deletelink {
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.addlink {
+    color:
+        #4d9b35 !important;
+}
+
+.changelink {
+    color:
+        var(--qb-orange) !important;
+}
+
+.deletelink {
+    color:
+        #c43d32 !important;
+}
+
+.addlink:hover,
+.changelink:hover,
+.deletelink:hover {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   BUTTONS
+   IMPORTANT:
+   .theme-toggle is excluded
+   ========================================================= */
+
+input[type="submit"],
+button:not(.theme-toggle),
+.submit-row input {
+    background:
+        var(--qb-orange) !important;
+
+    color:
+        white !important;
+
+    border:
+        none !important;
+
+    border-radius:
+        25px !important;
+
+    padding:
+        10px 20px !important;
+
+    font-weight:
+        700 !important;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input[type="submit"]:hover,
+button:not(.theme-toggle):hover,
+.submit-row input:hover {
+    background:
+        var(--qb-orange-dark) !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(241, 95, 50, 0.22);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+    background:
+        var(--qb-card) !important;
+
+    color:
+        var(--qb-brown) !important;
+
+    border:
+        1px solid var(--qb-border) !important;
+
+    border-radius:
+        10px !important;
+
+    padding:
+        9px 11px !important;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color:
+        var(--qb-orange) !important;
+
+    outline:
+        none !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(241, 95, 50, 0.10) !important;
+}
+
+
+/* =========================================================
+   BREADCRUMBS
+   ========================================================= */
+
+div.breadcrumbs {
+    background:
+        var(--qb-light) !important;
+
+    color:
+        var(--qb-muted-brown) !important;
+
+    border-bottom:
+        1px solid var(--qb-border) !important;
+
+    padding:
+        12px 35px !important;
+}
+
+div.breadcrumbs a {
+    color:
+        var(--qb-orange) !important;
+
+    text-decoration: none !important;
+}
+
+div.breadcrumbs a:hover {
+    color:
+        var(--qb-brown) !important;
+}
+
+
+/* =========================================================
+   RECENT ACTIONS
+   ========================================================= */
+
+#content-related {
+    background:
+        transparent !important;
+}
+
+#content-related .module {
+    background:
+        var(--qb-card) !important;
+}
+
+#content-related h2 {
+    background:
+        var(--qb-brown) !important;
+
+    color:
+        var(--qb-light) !important;
+}
+
+.actionlist li {
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.08);
+}
+
+.actionlist a {
+    color:
+        var(--qb-orange) !important;
+}
+
+
+/* =========================================================
+   FORM ROWS
+   ========================================================= */
+
+.form-row {
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.08) !important;
+
+    padding:
+        15px !important;
+}
+
+.form-row label {
+    color:
+        var(--qb-brown) !important;
+
+    font-weight:
+        600;
+}
+
+
+/* =========================================================
+   HELP TEXT
+   ========================================================= */
+
+.help,
+.helptext {
+    color:
+        #8a675d !important;
+}
+
+
+/* =========================================================
+   SELECTED / ACTIONS
+   ========================================================= */
+
+.actions {
+    background:
+        var(--qb-light) !important;
+
+    border:
+        1px solid var(--qb-border) !important;
+
+    border-radius:
+        12px !important;
+
+    padding:
+        10px !important;
+
+    margin-bottom:
+        15px;
+}
+
+.actions select {
+    margin:
+        0 8px;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.messagelist li {
+    border-radius:
+        12px !important;
+
+    margin-bottom:
+        10px !important;
+
+    box-shadow:
+        var(--qb-shadow);
+}
+
+
+/* =========================================================
+   OBJECT TOOLS
+   ========================================================= */
+
+.object-tools a {
+    background:
+        var(--qb-orange) !important;
+
+    border-radius:
+        22px !important;
+
+    padding:
+        9px 16px !important;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.object-tools a:hover {
+    background:
+        var(--qb-orange-dark) !important;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+#footer {
+    background:
+        var(--qb-cream) !important;
+
+    color:
+        var(--qb-muted-brown) !important;
+
+    border-top:
+        1px solid var(--qb-border);
+
+    padding:
+        25px;
+}
+
+
+/* =========================================================
+   QUICKBITE DASHBOARD
+   ========================================================= */
+
+
+/* =========================================================
+   DASHBOARD CONTAINER
+   ========================================================= */
+
+.qb-dashboard {
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
+
+.qb-dashboard-header {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.qb-dashboard-label {
+    color: var(--qb-orange);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 8px;
+}
+
+.qb-dashboard-header h1 {
+    font-family: Georgia, serif;
+
+    color: var(--qb-brown);
+
+    font-size: 38px;
+
+    margin: 0 0 8px;
+}
+
+.qb-dashboard-header > div:first-child > p:last-child {
+    color: var(--qb-muted-brown);
+
+    font-size: 14px;
+}
+
+.qb-dashboard-date {
+    text-align: right;
+
+    padding-bottom: 4px;
+}
+
+.qb-dashboard-date span {
+    display: block;
+
+    color: var(--qb-orange);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 4px;
+}
+
+.qb-dashboard-date strong {
+    color: var(--qb-brown);
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   STAT GRID
+   ========================================================= */
+
+.qb-stat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   STAT CARD
+   ========================================================= */
+
+.qb-stat-card {
+    position: relative;
+
+    min-height: 145px;
+
+    padding: 23px;
+
+    background: var(--qb-card);
+
+    border:
+        1px solid var(--qb-border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--qb-shadow);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.qb-stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    right: -35px;
+    top: -35px;
+
+    background: var(--qb-yellow);
+
+    border-radius: 50%;
+
+    opacity: 0.35;
+
+    transition:
+        transform 0.4s ease;
+}
+
+.qb-stat-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        var(--qb-orange);
+
+    box-shadow:
+        0 18px 35px
+        rgba(87, 32, 24, 0.12);
+}
+
+.qb-stat-card:hover::after {
+    transform:
+        scale(1.5);
+}
+
+
+/* =========================================================
+   STAT ICON
+   ========================================================= */
+
+.qb-stat-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.orange-icon {
+    background: var(--qb-orange);
+
+    color: white;
+}
+
+.yellow-icon {
+    background: var(--qb-yellow);
+
+    color: var(--qb-brown);
+}
+
+
+/* =========================================================
+   STAT TEXT
+   ========================================================= */
+
+.qb-stat-card p {
+    color: var(--qb-muted-brown);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 5px;
+}
+
+.qb-stat-card h2 {
+    color: var(--qb-brown);
+
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    margin: 0;
+}
+
+.qb-card-arrow {
+    position: absolute;
+
+    right: 18px;
+    bottom: 15px;
+
+    color: var(--qb-orange);
+
+    font-size: 18px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.qb-stat-card:hover .qb-card-arrow {
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   DASHBOARD COLUMNS
+   ========================================================= */
+
+.qb-dashboard-columns {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(300px, 0.8fr);
+
+    gap: 22px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+   ========================================================= */
+
+.qb-dashboard-card {
+    background: var(--qb-card);
+
+    border:
+        1px solid var(--qb-border);
+
+    border-radius: 22px;
+
+    box-shadow:
+        var(--qb-shadow);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD HEADING
+   ========================================================= */
+
+.qb-card-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 23px 25px;
+
+    border-bottom:
+        1px solid var(--qb-border);
+}
+
+.qb-card-heading p {
+    color: var(--qb-orange);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.qb-card-heading h2 {
+    color: var(--qb-brown);
+
+    font-family: Georgia, serif;
+
+    font-size: 24px;
+
+    margin: 0;
+}
+
+.qb-card-heading > a {
+    color: var(--qb-orange) !important;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   ORDERS
+   ========================================================= */
+
+.qb-orders-list {
+    padding: 5px 20px;
+}
+
+.qb-order-row {
+    min-height: 68px;
+
+    display: grid;
+
+    grid-template-columns:
+        80px
+        1fr
+        105px
+        20px;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.07);
+
+    text-decoration: none !important;
+
+    transition:
+        padding 0.25s ease,
+        background 0.25s ease;
+}
+
+.qb-order-row:last-child {
+    border-bottom: none;
+}
+
+.qb-order-row:hover {
+    padding-left: 7px;
+
+    background:
+        rgba(255, 242, 210, 0.55);
+}
+
+.qb-order-number span {
+    display: block;
+
+    color: #a88a80;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.qb-order-number strong {
+    color: var(--qb-brown);
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+}
+
+.qb-order-customer strong {
+    display: block;
+
+    color: var(--qb-brown);
+
+    font-size: 13px;
+}
+
+.qb-order-customer span {
+    display: block;
+
+    color: #9a7b72;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   ORDER STATUS
+   ========================================================= */
+
+.qb-order-status {
+    padding:
+        6px 9px;
+
+    border-radius:
+        20px;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    background:
+        #f4e7c8;
+
+    color:
+        var(--qb-brown);
+}
+
+.status-preparing {
+    background:
+        #ffe0d0;
+
+    color:
+        #bd4a2c;
+}
+
+.status-ready {
+    background:
+        #fff0bf;
+
+    color:
+        #8b6510;
+}
+
+.status-completed {
+    background:
+        #dcebd3;
+
+    color:
+        #477033;
+}
+
+.qb-row-arrow {
+    color:
+        var(--qb-orange);
+
+    font-size:
+        16px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.qb-order-row:hover .qb-row-arrow {
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.qb-empty {
+    min-height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #9a7b72;
+}
+
+.qb-empty span {
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.qb-quick-actions {
+    padding: 8px 20px;
+}
+
+.qb-action {
+    min-height: 68px;
+
+    display: grid;
+
+    grid-template-columns:
+        42px
+        1fr
+        20px;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom:
+        1px solid rgba(87, 32, 24, 0.07);
+
+    text-decoration: none !important;
+
+    transition:
+        padding 0.25s ease,
+        background 0.25s ease;
+}
+
+.qb-action:last-child {
+    border-bottom: none;
+}
+
+.qb-action:hover {
+    padding-left: 7px;
+
+    background:
+        rgba(255, 242, 210, 0.55);
+}
+
+.action-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+
+    background:
+        #ffe0ce;
+
+    color:
+        var(--qb-orange);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+.qb-action strong {
+    display: block;
+
+    color:
+        var(--qb-brown);
+
+    font-size:
+        12px;
+}
+
+.qb-action div span {
+    display: block;
+
+    color:
+        #9a7b72;
+
+    font-size:
+        10px;
+
+    margin-top:
+        3px;
+}
+
+.qb-action b {
+    color:
+        var(--qb-orange);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.qb-action:hover b {
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   DJANGO APP AREA
+   ========================================================= */
+
+.qb-admin-apps {
+    margin-top: 5px;
+}
+
+.qb-admin-apps > .qb-card-heading {
+    background:
+        transparent;
+
+    padding-left:
+        0;
+
+    padding-right:
+        0;
+
+    border-bottom:
+        none;
+}
+
+
+/* Hide duplicate default heading */
+
+.qb-admin-apps #content-main h1 {
+    display:
+        none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .qb-stat-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .qb-dashboard-columns {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    #header {
+        padding:
+            15px 20px !important;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            12px;
+    }
+
+    .qb-admin-label {
+        display:
+            none;
+    }
+
+    #content {
+        padding:
+            20px !important;
+    }
+
+    div.breadcrumbs {
+        padding:
+            10px 20px !important;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .qb-dashboard {
+        padding:
+            0 5px;
+    }
+
+    .qb-dashboard-header {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            15px;
+    }
+
+    .qb-dashboard-date {
+        text-align:
+            left;
+    }
+
+    .qb-stat-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .qb-order-row {
+        grid-template-columns:
+            65px
+            1fr
+            85px
+            15px;
+    }
+
+}
+
+/* =========================================================
+   QUICKBITE BREADCRUMB — FINAL FIX
+   Targets Django's OUTER breadcrumb container
+   ========================================================= */
+
+/* Outer Django breadcrumb bar */
+#nav-breadcrumbs,
+nav#nav-breadcrumbs,
+nav[aria-label="Breadcrumbs"] {
+    background: #fff7e8 !important;
+    background-color: #fff7e8 !important;
+
+    color: #70453d !important;
+
+    border: none !important;
+    border-top: none !important;
+    border-bottom: 1px solid #ead8bb !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Inner breadcrumb area */
+#nav-breadcrumbs .breadcrumbs,
+nav#nav-breadcrumbs .breadcrumbs,
+nav[aria-label="Breadcrumbs"] .breadcrumbs,
+div.breadcrumbs {
+    background: transparent !important;
+    background-color: transparent !important;
+
+    color: #70453d !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    padding: 12px 35px !important;
+}
+
+
+/* Home link */
+#nav-breadcrumbs a,
+nav#nav-breadcrumbs a,
+nav[aria-label="Breadcrumbs"] a,
+div.breadcrumbs a {
+    color: #f15f32 !important;
+
+    text-decoration: none !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* Home hover */
+#nav-breadcrumbs a:hover,
+nav#nav-breadcrumbs a:hover,
+nav[aria-label="Breadcrumbs"] a:hover,
+div.breadcrumbs a:hover {
+    color: #572018 !important;
+}
+
+
+/* Current page text */
+#nav-breadcrumbs,
+#nav-breadcrumbs li,
+#nav-breadcrumbs span,
+nav#nav-breadcrumbs,
+nav#nav-breadcrumbs li,
+nav#nav-breadcrumbs span,
+nav[aria-label="Breadcrumbs"],
+nav[aria-label="Breadcrumbs"] li,
+nav[aria-label="Breadcrumbs"] span {
+    color: #70453d !important;
+}
+
+/* =========================================================
+   QUICKBITE ADMIN
+   FIX CATEGORY SELECT / RELATED FIELD HEIGHT
+   ========================================================= */
+
+/* Django admin select fields */
+#content select {
+    box-sizing: border-box !important;
+
+    min-height: 34px !important;
+    height: 34px !important;
+
+    padding: 5px 10px !important;
+
+    line-height: 22px !important;
+
+    vertical-align: middle !important;
+
+    overflow: visible !important;
+}
+
+
+/* Category related-widget wrapper */
+#content .related-widget-wrapper {
+    display: flex !important;
+
+    align-items: center !important;
+
+    min-height: 34px !important;
+
+    gap: 8px !important;
+}
+
+
+/* Category dropdown */
+#content .related-widget-wrapper select {
+    height: 34px !important;
+
+    min-height: 34px !important;
+
+    padding: 4px 10px !important;
+
+    line-height: 24px !important;
+
+    margin: 0 !important;
+
+    vertical-align: middle !important;
+}
+
+
+/* Icons beside Category:
+   edit / add / delete / view */
+
+#content .related-widget-wrapper .related-widget-wrapper-link {
+    width: 28px !important;
+    height: 28px !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+/* Don't let the icons get clipped */
+
+#content .related-widget-wrapper .related-widget-wrapper-link img,
+#content .related-widget-wrapper .related-widget-wrapper-link svg {
+    max-width: 20px !important;
+    max-height: 20px !important;
+
+    width: auto;
+    height: auto;
+}
+
+
+/* =========================================================
+   FORM ROW — PREVENT FIELD CLIPPING
+   ========================================================= */
+
+#content .form-row {
+    overflow: visible !important;
+}
+
+#content .form-row .field-box {
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   CATEGORY LABEL + FIELD
+   ========================================================= */
+
+#content .form-row label {
+    display: block;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   GENERAL DJANGO SELECT FIX
+   ========================================================= */
+
+#content select:focus {
+    outline: none !important;
+
+    border-color: var(--qb-orange) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(241, 95, 50, 0.10) !important;
+}

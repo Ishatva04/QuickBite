@@ -1,0 +1,1000 @@
+/* =========================================================
+   QUICKBITE SIGN UP
+========================================================= */
+
+.signup-page {
+    min-height: calc(100vh - 90px);
+
+    display: grid;
+
+    grid-template-columns: 48% 52%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOD SIDE
+========================================================= */
+
+.signup-food {
+    position: relative;
+
+    min-height: calc(100vh - 90px);
+
+    background: #572018;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 0 130px 130px 0;
+
+    margin: 35px 35px 35px 0;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.food-glow {
+    position: absolute;
+
+    width: 480px;
+    height: 480px;
+
+    border-radius: 50%;
+
+    background: #ed672f;
+
+    opacity: 0.12;
+
+    filter: blur(2px);
+
+    animation: glowPulse 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   FLOATING SHAPES
+========================================================= */
+
+.floating-shape {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(244, 193, 93, 0.3);
+}
+
+
+.shape-one {
+    width: 470px;
+    height: 470px;
+
+    animation: rotateShape 25s linear infinite;
+}
+
+
+.shape-two {
+    width: 350px;
+    height: 350px;
+
+    border-color: rgba(255, 255, 255, 0.1);
+
+    animation: rotateShapeReverse 20s linear infinite;
+}
+
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+.food-spark {
+    position: absolute;
+
+    color: #f4c15d;
+
+    z-index: 3;
+}
+
+
+.spark-one {
+    top: 23%;
+    left: 18%;
+
+    font-size: 25px;
+
+    animation: sparkle 2.5s ease-in-out infinite;
+}
+
+
+.spark-two {
+    right: 17%;
+    top: 32%;
+
+    font-size: 20px;
+
+    animation: sparkle 2.5s ease-in-out 1s infinite;
+}
+
+
+.spark-three {
+    left: 22%;
+    bottom: 27%;
+
+    font-size: 25px;
+
+    animation: floatingDot 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   FOOD
+========================================================= */
+
+.restaurant-food {
+    position: relative;
+
+    width: 510px;
+    height: 450px;
+
+    z-index: 4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation: foodEntrance 1.2s ease forwards;
+}
+
+
+/* =========================================================
+   STEAM
+========================================================= */
+
+.steam {
+    position: absolute;
+
+    width: 8px;
+    height: 85px;
+
+    border-left: 4px solid rgba(255, 244, 223, 0.65);
+
+    border-radius: 50%;
+
+    top: 55px;
+
+    opacity: 0;
+}
+
+
+.steam-one {
+    left: 220px;
+
+    animation: steamMove 3s ease-in-out infinite;
+}
+
+
+.steam-two {
+    left: 255px;
+
+    animation: steamMove 3s ease-in-out 0.8s infinite;
+}
+
+
+.steam-three {
+    left: 290px;
+
+    animation: steamMove 3s ease-in-out 1.5s infinite;
+}
+
+
+/* =========================================================
+   PLATE
+========================================================= */
+
+.plate {
+    position: absolute;
+
+    width: 400px;
+    height: 235px;
+
+    background: #fff6e8;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 35px 65px rgba(0, 0, 0, 0.28);
+
+    transform: rotate(4deg);
+
+    animation: plateFloat 5s ease-in-out infinite;
+}
+
+
+.plate::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 175px;
+
+    left: 35px;
+    top: 30px;
+
+    background: #ed672f;
+
+    border-radius: 50%;
+}
+
+
+.plate-food {
+    position: absolute;
+
+    width: 295px;
+    height: 150px;
+
+    left: 53px;
+    top: 43px;
+
+    background: #c64d20;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOD LINES
+========================================================= */
+
+.food-line {
+    position: absolute;
+
+    width: 125px;
+    height: 30px;
+
+    border-bottom: 7px solid #f4c15d;
+
+    border-radius: 50%;
+}
+
+
+.line-one {
+    left: 50px;
+    top: 42px;
+
+    transform: rotate(8deg);
+}
+
+
+.line-two {
+    left: 90px;
+    top: 65px;
+
+    transform: rotate(-10deg);
+}
+
+
+.line-three {
+    left: 120px;
+    top: 38px;
+
+    transform: rotate(12deg);
+}
+
+
+.line-four {
+    left: 75px;
+    top: 85px;
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================================================
+   FOOD DOTS
+========================================================= */
+
+.food-dot {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #f15f32;
+}
+
+
+.dot-one {
+    left: 65px;
+    top: 38px;
+
+    animation: ingredientFloat 3s ease-in-out infinite;
+}
+
+
+.dot-two {
+    right: 65px;
+    bottom: 35px;
+
+    animation: ingredientFloat 3s ease-in-out 0.7s infinite;
+}
+
+
+.dot-three {
+    right: 80px;
+    top: 55px;
+
+    width: 17px;
+    height: 17px;
+
+    background: #f4c15d;
+}
+
+
+/* =========================================================
+   GREEN LEAVES
+========================================================= */
+
+.green-leaf {
+    position: absolute;
+
+    width: 30px;
+    height: 16px;
+
+    background: #7c8b3d;
+
+    border-radius: 80% 20% 80% 20%;
+}
+
+
+.leaf-one {
+    left: 110px;
+    top: 32px;
+
+    transform: rotate(35deg);
+}
+
+
+.leaf-two {
+    right: 90px;
+    top: 83px;
+
+    transform: rotate(-35deg);
+}
+
+
+/* =========================================================
+   FORK + KNIFE
+========================================================= */
+
+.fork,
+.knife {
+    position: absolute;
+
+    width: 145px;
+    height: 7px;
+
+    border-radius: 10px;
+
+    background: #f4c15d;
+}
+
+
+.fork {
+    left: 50px;
+    bottom: 95px;
+
+    transform: rotate(-18deg);
+
+    animation: utensilMove 4s ease-in-out infinite;
+}
+
+
+.knife {
+    right: 40px;
+    bottom: 75px;
+
+    transform: rotate(18deg);
+
+    animation: utensilMove 4s ease-in-out 0.5s infinite;
+}
+
+
+/* =========================================================
+   FOOD MESSAGE
+========================================================= */
+
+.food-text {
+    position: absolute;
+
+    bottom: 48px;
+
+    text-align: center;
+
+    z-index: 6;
+
+    animation: textEntrance 1s ease 0.7s both;
+}
+
+
+.food-text p {
+    color: #f4c15d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 8px;
+}
+
+
+.food-text h2 {
+    color: #fff6e8;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+
+.food-text span {
+    color: rgba(255, 246, 232, 0.65);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RIGHT SIGNUP CONTENT
+========================================================= */
+
+.signup-content {
+    padding: 55px 8% 55px 7%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    animation: contentEntrance 1s ease forwards;
+}
+
+
+.signup-label {
+    color: #f15f32;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 18px;
+}
+
+
+.signup-content h1 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(50px, 4.5vw, 70px);
+
+    line-height: 0.9;
+
+    letter-spacing: -3px;
+
+    color: #5b2119;
+
+    margin-bottom: 22px;
+}
+
+
+.signup-content h1 span {
+    color: #f15f32;
+}
+
+
+.signup-description {
+    max-width: 440px;
+
+    color: #70453d;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.signup-error {
+    max-width: 560px;
+
+    background: #ffe0d6;
+
+    color: #a83820;
+
+    border-left: 4px solid #f15f32;
+
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.signup-form {
+    width: min(560px, 100%);
+}
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+
+.input-group label {
+    display: block;
+
+    color: #572018;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 6px;
+}
+
+
+.input-wrapper {
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: #fffaf0;
+
+    border: 1px solid #e7d4b6;
+
+    border-radius: 12px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.input-wrapper:focus-within {
+    border-color: #f15f32;
+
+    box-shadow:
+        0 8px 25px rgba(91, 33, 25, 0.08);
+
+    transform: translateY(-2px);
+}
+
+
+.input-icon {
+    width: 45px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+.input-wrapper input {
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #572018;
+
+    font-size: 13px;
+
+    padding-right: 12px;
+}
+
+
+.input-wrapper input::placeholder {
+    color: #b79588;
+}
+
+
+/* =========================================================
+   PASSWORD ROW
+========================================================= */
+
+.password-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.signup-button {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 28px;
+
+    background: #f15f32;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.signup-button:hover {
+    background: #e85126;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(241, 95, 50, 0.28);
+}
+
+
+.button-arrow {
+    font-size: 19px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.signup-button:hover .button-arrow {
+    transform: translateX(7px);
+}
+
+
+/* =========================================================
+   LOGIN LINK
+========================================================= */
+
+.login-text {
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #8a675d;
+
+    font-size: 12px;
+}
+
+
+.login-text a {
+    color: #f15f32;
+
+    font-weight: 700;
+
+    margin-left: 4px;
+}
+
+
+.login-text a span {
+    display: inline-block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.login-text a:hover span {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes contentEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes foodEntrance {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-70px)
+            rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(0)
+            rotate(0);
+    }
+}
+
+
+@keyframes plateFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(4deg);
+    }
+
+    50% {
+        transform:
+            translateY(-15px)
+            rotate(1deg);
+    }
+}
+
+
+@keyframes steamMove {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scaleY(0.7);
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-60px)
+            scaleY(1.2);
+    }
+}
+
+
+@keyframes ingredientFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+@keyframes utensilMove {
+
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -7px;
+    }
+}
+
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+
+        transform:
+            scale(0.8)
+            rotate(0);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.2)
+            rotate(90deg);
+    }
+}
+
+
+@keyframes floatingDot {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+}
+
+
+@keyframes rotateShape {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes rotateShapeReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0);
+    }
+}
+
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+
+        opacity: 0.10;
+    }
+
+    50% {
+        transform: scale(1.15);
+
+        opacity: 0.17;
+    }
+}
+
+
+@keyframes textEntrance {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .signup-page {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-food {
+        min-height: 600px;
+
+        margin: 25px;
+
+        border-radius: 80px;
+    }
+
+    .signup-content {
+        padding: 60px 8%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .signup-food {
+        min-height: 500px;
+
+        margin: 15px;
+
+        border-radius: 55px;
+    }
+
+    .restaurant-food {
+        transform: scale(0.72);
+    }
+
+    .signup-content {
+        padding: 50px 7%;
+    }
+
+    .signup-content h1 {
+        font-size: 50px;
+    }
+
+    .password-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
