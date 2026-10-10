@@ -1,6 +1,6 @@
 /* =========================================================
    QUICKBITE - CATEGORY DETAIL
-   Food listing + animations
+   Food listing + variant selection
 ========================================================= */
 
 
@@ -26,8 +26,10 @@
 .category-header {
     margin-bottom: 45px;
 
-    animation:
-        categoryHeaderEnter 0.8s ease forwards;
+    position: relative;
+    z-index: 2;
+
+    animation: categoryHeaderEnter 0.8s ease forwards;
 }
 
 
@@ -54,7 +56,7 @@
 
     letter-spacing: -4px;
 
-    margin-bottom: 22px;
+    margin: 0 0 22px;
 }
 
 
@@ -64,6 +66,8 @@
     font-size: 16px;
 
     line-height: 1.6;
+
+    margin: 0;
 }
 
 
@@ -74,9 +78,9 @@
 .food-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 22px;
+    gap: 24px;
 
     position: relative;
 
@@ -89,9 +93,9 @@
 ========================================================= */
 
 .food-card {
-    min-height: 245px;
+    min-height: 300px;
 
-    padding: 24px 26px;
+    padding: 25px;
 
     background: #fff5e6;
 
@@ -102,8 +106,6 @@
     display: flex;
 
     flex-direction: column;
-
-    justify-content: space-between;
 
     position: relative;
 
@@ -123,6 +125,16 @@
         transform 0.35s ease,
         box-shadow 0.35s ease,
         border-color 0.35s ease;
+}
+
+
+.food-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #ed672f;
+
+    box-shadow:
+        0 22px 42px rgba(87, 32, 24, 0.13);
 }
 
 
@@ -162,8 +174,8 @@
 .food-card::before {
     content: "";
 
-    width: 120px;
-    height: 120px;
+    width: 125px;
+    height: 125px;
 
     border-radius: 50%;
 
@@ -171,8 +183,8 @@
 
     position: absolute;
 
-    top: -55px;
-    right: -45px;
+    top: -60px;
+    right: -50px;
 
     opacity: 0.4;
 
@@ -186,20 +198,6 @@
     transform: scale(1.3);
 
     opacity: 0.6;
-}
-
-
-/* =========================================================
-   CARD HOVER
-========================================================= */
-
-.food-card:hover {
-    transform: translateY(-8px);
-
-    border-color: #ed672f;
-
-    box-shadow:
-        0 22px 42px rgba(87, 32, 24, 0.13);
 }
 
 
@@ -259,7 +257,7 @@
 ========================================================= */
 
 .availability {
-    padding: 7px 11px;
+    padding: 7px 12px;
 
     border-radius: 20px;
 
@@ -295,6 +293,10 @@
     position: relative;
 
     z-index: 2;
+
+    margin-top: 25px;
+
+    flex: 1;
 }
 
 
@@ -303,20 +305,128 @@
 
     font-family: Georgia, serif;
 
-    font-size: 25px;
+    font-size: 28px;
 
-    line-height: 1.2;
+    line-height: 1.15;
 
-    margin-bottom: 8px;
+    margin: 0;
 }
 
 
 .food-price {
     color: #ed672f;
 
-    font-size: 17px;
+    font-size: 18px;
 
     font-weight: 700;
+
+    margin: 12px 0 0;
+}
+
+
+/* =========================================================
+   VARIANT OPTIONS
+========================================================= */
+
+/*
+   Each variant is now its own Add-to-Cart action.
+
+   Example:
+
+   [ Small  ₹249 ]
+   [ Medium ₹300 ]
+   [ Large  ₹400 ]
+*/
+
+.variant-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 18px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.variant-form {
+    margin: 0;
+}
+
+
+/* =========================================================
+   VARIANT BUTTON
+========================================================= */
+
+.variant-button {
+    min-height: 42px;
+
+    padding: 10px 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1.5px solid #ed672f;
+
+    border-radius: 13px;
+
+    background: #fff8ed;
+
+    color: #572018;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.variant-button:hover {
+    background: #ed672f;
+
+    color: #fff5e6;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(87, 32, 24, 0.15);
+}
+
+
+.variant-button:active {
+    transform: translateY(-1px);
+}
+
+
+.variant-name {
+    font-weight: 700;
+}
+
+
+.variant-price {
+    font-weight: 600;
+
+    opacity: 0.9;
 }
 
 
@@ -331,15 +441,19 @@
 
     justify-content: space-between;
 
-    gap: 12px;
+    gap: 15px;
+
+    margin-top: 24px;
 
     position: relative;
 
-    z-index: 2;
+    z-index: 3;
 }
 
 
-/* View Details */
+/* =========================================================
+   VIEW DETAILS
+========================================================= */
 
 .view-food {
     color: #ed672f;
@@ -353,6 +467,8 @@
     align-items: center;
 
     gap: 6px;
+
+    text-decoration: none;
 
     transition:
         color 0.3s ease,
@@ -380,31 +496,69 @@
 }
 
 
-/* Add to Cart */
+/* =========================================================
+   NORMAL FOOD - ADD TO CART
+========================================================= */
 
 .add-cart {
-    padding: 9px 14px;
+    min-height: 42px;
 
-    border-radius: 20px;
+    padding: 10px 17px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 22px;
 
     background: #ed672f;
 
     color: #fff5e6;
 
+    font-family: inherit;
+
     font-size: 12px;
 
     font-weight: 700;
 
+    text-decoration: none;
+
+    cursor: pointer;
+
     transition:
         background 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 
 .add-cart:hover {
     background: #572018;
 
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(87, 32, 24, 0.15);
+}
+
+
+/* =========================================================
+   DISABLED / UNAVAILABLE FOOD
+========================================================= */
+
+.food-card:has(.unavailable) {
+    opacity: 0.72;
+}
+
+
+.food-card:has(.unavailable):hover {
+    border-color: transparent;
+
+    transform: translateY(-3px);
 }
 
 
@@ -415,7 +569,7 @@
 .empty-category {
     grid-column: 1 / -1;
 
-    min-height: 230px;
+    min-height: 260px;
 
     padding: 40px;
 
@@ -432,6 +586,9 @@
     justify-content: center;
 
     text-align: center;
+
+    box-shadow:
+        0 12px 30px rgba(87, 32, 24, 0.07);
 
     animation:
         categoryHeaderEnter 0.8s ease forwards;
@@ -452,7 +609,7 @@
 
     font-size: 27px;
 
-    margin-bottom: 8px;
+    margin: 0 0 8px;
 }
 
 
@@ -460,6 +617,8 @@
     color: #70453d;
 
     font-size: 14px;
+
+    margin: 0;
 }
 
 
@@ -486,6 +645,8 @@
 
     animation:
         categoryCircleFloat 8s ease-in-out infinite;
+
+    pointer-events: none;
 }
 
 
@@ -506,6 +667,8 @@
 
     animation:
         categoryDotFloat 4s ease-in-out infinite;
+
+    pointer-events: none;
 }
 
 
@@ -586,44 +749,133 @@
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
     .category-page {
         padding: 50px 6% 70px;
     }
 
+
     .food-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .category-header h1 {
+        font-size: clamp(55px, 8vw, 80px);
     }
 
 }
 
 
-@media (max-width: 600px) {
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
 
     .category-page {
         padding: 40px 5% 60px;
     }
 
+
+    .category-header {
+        margin-bottom: 35px;
+    }
+
+
     .category-header h1 {
-        font-size: 65px;
+        font-size: 58px;
 
         letter-spacing: -3px;
     }
+
 
     .category-description {
         font-size: 15px;
     }
 
+
     .food-grid {
         grid-template-columns: 1fr;
+
+        gap: 18px;
     }
 
+
     .food-card {
-        min-height: 225px;
+        min-height: 285px;
+
+        padding: 22px;
+    }
+
+
+    .food-content h2 {
+        font-size: 26px;
+    }
+
+
+    .variant-options {
+        gap: 8px;
+    }
+
+
+    .variant-button {
+        min-height: 40px;
+
+        padding: 9px 12px;
+
+        font-size: 12px;
+    }
+
+
+    .food-actions {
+        margin-top: 20px;
+    }
+
+
+    .view-food {
+        font-size: 12px;
+    }
+
+
+    .add-cart {
+        min-height: 40px;
+
+        padding: 9px 14px;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .category-header,
+    .food-card,
+    .empty-category,
+    .category-page::before,
+    .category-page::after {
+        animation: none;
+    }
+
+
+    .food-card,
+    .variant-button,
+    .add-cart,
+    .food-icon,
+    .view-food,
+    .view-food span {
+        transition: none;
     }
 
 }

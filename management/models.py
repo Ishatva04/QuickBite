@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from menu.models import Food
+from menu.models import Food,FoodVariant
 from django.utils import timezone
 import uuid
 
@@ -85,6 +85,12 @@ class Payment(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    variant = models.ForeignKey(
+    FoodVariant,
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True
+)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)

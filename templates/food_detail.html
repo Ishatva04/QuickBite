@@ -54,41 +54,43 @@
             {% if food.variants.exists %}
 
     <div class="food-variants">
+        <h2>Choose Size</h2>
 
-        <h2>
-            Choose Size
-        </h2>
+        <form method="POST" action="{% url 'add_to_cart' food.id %}">
+            {% csrf_token %}
 
-        {% for variant in food.variants.all %}
+            {% for variant in food.variants.all %}
+                {% if variant.is_available %}
+                    <label class="food-variant">
+                        <input
+                            type="radio"
+                            name="variant_id"
+                            value="{{ variant.id }}"
+                            required
+                        >
 
-            {% if variant.is_available %}
-
-                <div class="food-variant">
-
-                    <span>
-                        {{ variant.name }}
-                    </span>
-
-                    <span>
-                        ₹{{ variant.price }}
-                    </span>
-
-                </div>
-
+                        <span>{{ variant.name }}</span>
+                        <span>₹{{ variant.price }}</span>
+                    </label>
                 {% endif %}
-
             {% endfor %}
 
-            </div>
+            <button type="submit" class="food-add-cart">
+    Add to Cart
+    <span>→</span>
+</button>
+        </form>
+    </div>
 
-            {% else %}
+{% else %}
 
-                <p class="food-detail-price">
-                 ₹{{ food.price }}
-                </p>
+    <p class="food-detail-price">
+        ₹{{ food.price }}
+    </p>
 
-            {% endif %}
+    
 
+{% endif %}
 
             <!-- Availability -->
 

@@ -31,7 +31,11 @@ class Food(models.Model):
 
     name = models.CharField(max_length=100)
 
-    price = models.DecimalField(max_digits=6,decimal_places=2)
+    price = models.DecimalField(
+          max_digits=6,
+          decimal_places=2,
+          blank= True,
+          null = True)
     preparation_time = models.PositiveIntegerField(default=15)
 
     is_available = models.BooleanField(default=True)
@@ -75,7 +79,6 @@ class FoodVariant(models.Model):
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2
-        
     )
 
     is_available = models.BooleanField(

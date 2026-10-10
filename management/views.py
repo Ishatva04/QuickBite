@@ -36,18 +36,41 @@ def checkout(request):
     total = 0
     preparation_times = []
 
-    for food_id, quantity in cart.items():
+    for cart_key, quantity in cart.items():
 
-        food = get_object_or_404(Food, id=food_id)
+        food_id, variant_id = cart_key.split("_")
 
-        subtotal = food.price * quantity
+        food = get_object_or_404(
+            Food,
+            id=food_id
+        )
+
+        variant = None
+
+        if variant_id != "none":
+
+            variant = get_object_or_404(
+                food.variants,
+                id=variant_id,
+                is_available=True
+            )
+
+            price = variant.price
+
+        else:
+
+            price = food.price
+
+        subtotal = price * quantity
         total += subtotal
 
         preparation_times.append(food.preparation_time)
 
         foods.append({
             "food": food,
+            "variant": variant,
             "quantity": quantity,
+            "price": price,
             "subtotal": subtotal
         })
 
@@ -75,8 +98,9 @@ def checkout(request):
             OrderItem.objects.create(
                 order=order,
                 food=item["food"],
+                variant=item["variant"],
                 quantity=item["quantity"],
-                price=item["food"].price,
+                price=item["price"],
                 subtotal=item["subtotal"]
             )
 
@@ -302,6 +326,12 @@ def invoice_pdf(request, order_id):
     y = 680
 
     for item in order.orderitem_set.all():
+
+        if item.variant:
+            item_name = f"{item.variant.name}  {item.food.name}"
+        else:
+            item_name = item.food.name
+
         pdf.drawString(
             100,
             y,

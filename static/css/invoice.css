@@ -412,7 +412,33 @@
     font-size: 34px;
 }
 
+/* =========================================================
+   PDF ACTION
+========================================================= */
 
+.invoice-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding: 0 5px 20px;
+}
+
+.invoice-actions a {
+    display: inline-block;
+    padding: 12px 22px;
+    background: #ed672f;
+    color: #fff8ec;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.invoice-actions a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(237, 103, 47, 0.25);
+}
 /* =========================================================
    FOOTER
 ========================================================= */

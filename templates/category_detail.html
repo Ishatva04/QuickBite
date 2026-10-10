@@ -40,6 +40,10 @@
 
             <div class="food-card">
 
+                <!-- =========================
+                     FOOD CARD TOP
+                ========================== -->
+
                 <div class="food-card-top">
 
                     <div class="food-icon">
@@ -63,18 +67,85 @@
                 </div>
 
 
+                <!-- =========================
+                     FOOD INFORMATION
+                ========================== -->
+
                 <div class="food-content">
 
                     <h2>
                         {{ food.name }}
                     </h2>
 
-                    <p class="food-price">
-                        ₹{{ food.price }}
-                    </p>
+
+                    <!-- =========================
+                         FOOD WITH VARIANTS
+                    ========================== -->
+
+                    {% if food.variants.exists %}
+
+                        <div class="variant-options">
+
+                            {% for variant in food.variants.all %}
+
+                                {% if variant.is_available and food.is_available %}
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'add_to_cart' food.id %}"
+                                        class="variant-form"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <input
+                                            type="hidden"
+                                            name="variant_id"
+                                            value="{{ variant.id }}"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="variant-button"
+                                        >
+
+                                            <span class="variant-name">
+                                                {{ variant.name }}
+                                            </span>
+
+                                            <span class="variant-price">
+                                                ₹{{ variant.price }}
+                                            </span>
+
+                                        </button>
+
+                                    </form>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+
+                    <!-- =========================
+                         FOOD WITHOUT VARIANTS
+                    ========================== -->
+
+                    {% else %}
+
+                        <p class="food-price">
+                            ₹{{ food.price }}
+                        </p>
+
+                    {% endif %}
 
                 </div>
 
+
+                <!-- =========================
+                     FOOD ACTIONS
+                ========================== -->
 
                 <div class="food-actions">
 
@@ -87,7 +158,11 @@
                     </a>
 
 
-                    {% if food.is_available %}
+                    <!-- =========================
+                         NORMAL FOOD ADD TO CART
+                    ========================== -->
+
+                    {% if food.is_available and not food.variants.exists %}
 
                         <a
                             href="{% url 'add_to_cart' food.id %}"
@@ -103,6 +178,10 @@
             </div>
 
         {% empty %}
+
+            <!-- =========================
+                 EMPTY CATEGORY
+            ========================== -->
 
             <div class="empty-category">
 

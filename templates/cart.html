@@ -30,7 +30,7 @@
     </div>
 
 
-    {% if foods %}
+    {% if items %}
 
         <!-- =========================
              CART CONTENT
@@ -45,7 +45,7 @@
 
             <div class="cart-items">
 
-                {% for item in foods %}
+                {% for item in items %}
 
                     <div class="cart-item">
 
@@ -65,7 +65,7 @@
                             </h2>
 
                             <p class="cart-food-price">
-                                ₹{{ item.food.price }}
+                                ₹{{ item.price }}
                             </p>
 
                         </div>
@@ -82,7 +82,7 @@
                             <div class="quantity-controls">
 
                                 <a
-                                    href="{% url 'decrease_quantity' item.food.id %}"
+                                    href="{% url 'decrease_quantity' item.cart_key %}"
                                     class="quantity-button"
                                 >
                                     −
@@ -93,7 +93,7 @@
                                 </span>
 
                                 <a
-                                    href="{% url 'increase_quantity' item.food.id %}"
+                                    href="{% url 'increase_quantity' item.cart_key %}"
                                     class="quantity-button"
                                 >
                                     +
@@ -122,7 +122,7 @@
                         <!-- Remove -->
 
                         <a
-                            href="{% url 'remove_from_cart' item.food.id %}"
+                            href="{% url 'remove_from_cart' item.cart_key %}"
                             class="remove-item"
                         >
                             ×
@@ -156,7 +156,7 @@
                     </span>
 
                     <span>
-                        {{ foods|length }}
+                        {{ items|length }}
                     </span>
                 </div>
 
